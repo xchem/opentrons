@@ -1,16 +1,17 @@
 from chem.utils import finish
 from chem.models import Reagent,ReagentSingle,Pipette,Action
+import os
 
 # Define the plates and platemaps of reagents
 reagent_1 = Reagent("amines", "B1", 'FluidX_24_5ml',
-                    r'C:\Users\opentrons\protocols\RealCase_Acylation\Amine_Acylation_2.csv')
+                    os.path.join("..","test","data","Amine_Acylation_2.csv"))
 reagent_2 = Reagent("acids", "B2", 'FluidX_24_9ml',
-                    r'C:\Users\opentrons\protocols\RealCase_Acylation\AC_Acylation.csv')
+                    os.path.join("..","test","data","AC_Acylation.csv"))
 trough = ReagentSingle("Control", "D2", 'trough-12row',
-                       r'C:\Users\opentrons\protocols\RealCase_Acylation\Others_Acylation.csv',
+                       os.path.join("..","test","data",'Others_Acylation.csv'),
                        'CPD ID','Location rack')
 trough_big = ReagentSingle("DMA", "C2", 'trough-12row',
-                           r'C:\Users\opentrons\protocols\RealCase_Acylation\Others_Acylation.csv',
+                           os.path.join("..","test","data",'Others_Acylation.csv'),
                            'CPD ID','Location rack')
 # Define the location of reaction plate
 reaction_rack = Reagent("reaction", 'C1', 'FluidX_96_tall')
