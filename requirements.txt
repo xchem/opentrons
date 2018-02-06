@@ -1,0 +1,5 @@
+ipython==5.4.1
+tqdm
+numpy
+nose
+opentrons
