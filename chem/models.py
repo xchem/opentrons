@@ -10,7 +10,7 @@ class Reagent(object):
         self.reagent_name = reagent_name
         self.plate_location = plate_location
         self.plate_type = plate_type
-        if self.csv_path:
+        if csv_path:
             self.csv_data = read_csv(csv_path)
         self.container = containers.load(plate_type,plate_location)
 
