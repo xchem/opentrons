@@ -34,4 +34,5 @@ Action(p1000.distribute, 'Volume per reaction (uL)',
 # Distribute reagent two as rows
 Action(p1000.distribute, 'Volume per reaction (uL)',
        reagent_2, reaction_rack, src_rack_col='Location rack').distribute("rows",dst_offset=-15)
+
 finish()
