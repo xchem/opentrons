@@ -91,6 +91,9 @@ ENV/
 .spyderproject
 .spyproject
 
+# Idea shit
+.idea/
+
 # Rope project settings
 .ropeproject
 
