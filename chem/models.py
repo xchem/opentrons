@@ -115,8 +115,7 @@ class Action(object):
     def transfer(self,src_offset=None,dst_offset=None):
         self.pipette(self.get_vol_list(),
                      self.convert_to_wells(self.source, self.get_src_wells(src_offset)),
-                     self.convert_to_wells(self.destination, self.get_dest_wells(dst_offset))
-                     )
+                     self.convert_to_wells(self.destination, self.get_dest_wells(dst_offset)))
 
     def distribtue(self,how,dst_offset=None):
         wells = self.convert_to_wells(self.source, self.get_src_list())
