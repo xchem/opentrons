@@ -109,6 +109,7 @@ def get_action_data():
  'Drop_tip at <Deck><Slot C3><Container point><Well A1>']
 
 
+
 class ModelTest(unittest.TestCase):
 
     def test_reagent(self):
@@ -163,8 +164,11 @@ class ModelTest(unittest.TestCase):
         action.transfer(src_offset=-30)
         commands = robot.commands()
         self.assertListEqual(commands,data)
+        robot.clear_commands()
 
     def test_action_distribute(self):
         action = setup_distribute()
         action.distribute("rows",dst_offset=-15)
-        self.assertEqual(len(robot.commands()),32)
+        commands = robot.commands()
+        self.assertEqual(len(commands),32)
+        robot.clear_commands()
