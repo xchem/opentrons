@@ -101,12 +101,16 @@ class Action(object):
             raise ValueError("Source location not specified")
 
     def get_src_wells(self,offset):
-        list = self.get_src_list()
-        return self.convert_to_wells(self.source,list,offset)
+        out_list = self.get_src_list()
+        if type(self.source)==ReagentSingle:
+            return out_list
+        return self.convert_to_wells(self.source,out_list,offset)
 
     def get_dest_wells(self,offset):
-        list = self.get_dest_list()
-        return self.convert_to_wells(self.destination,list,offset)
+        out_list = self.get_dest_list()
+        if type(self.destination)==ReagentSingle:
+            return out_list
+        return self.convert_to_wells(self.destination,out_list,offset)
 
     def get_dest_list(self):
         if type(self.destination)==ReagentSingle:
@@ -116,22 +120,26 @@ class Action(object):
         else:
             raise ValueError("Destination location not specified")
 
-    def convert_to_wells(self, container, well_list, offset=None):
+    def convert_to_wells(self, reagent, well_list, offset=None):
         """
         Convert a list of strings to a list of wells
-        :param container: the container we're talking about
+        :param reagent: the container we're talking about
         :param well_list: the wells we're talking about
+        :param offset: the offset for this
         :return:
         """
-        if offset:
-            return [well.top(offset) for well in container.wells(well_list)]
-        else:
-            return [well for well in container.wells(well_list).bottom()]
+        out_wells = []
+        for well in well_list:
+            if offset:
+                out_wells.append(reagent.container.wells(well).top(offset))
+            else:
+                out_wells.append(reagent.container.wells(well).bottom())
+        return out_wells
 
     def transfer(self,src_offset=None,dst_offset=None):
         self.pipette(self.get_vol_list(),
-                     self.convert_to_wells(self.source, self.get_src_wells(src_offset)),
-                     self.convert_to_wells(self.destination, self.get_dest_wells(dst_offset)))
+                     self.get_src_wells(src_offset),
+                     self.get_dest_wells(dst_offset))
 
     def distribtue(self,how,dst_offset=None):
         wells = self.convert_to_wells(self.source, self.get_src_list())

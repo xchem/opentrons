@@ -35,6 +35,7 @@ def read_csv(input_file):
             out_d[head].append(spl_line[i])
     df = DataFrame(out_d, len(lines[1:]))
     return df
+
 def finish():
     robot.commands()
     robot.home()
