@@ -1,5 +1,23 @@
-from chem.utils import read_csv
+from chem.utils import read_csv, get_pipette_dict
 from opentrons import containers, instruments, robot
+
+
+def do_install(self,reagent_name,plate_location,plate_type,csv_path):
+    """
+
+    :param self:
+    :param reagent_name:
+    :param plate_location:
+    :param plate_type:
+    :param csv_path:
+    :return:
+    """
+    self.reagent_name = reagent_name
+    self.plate_location = plate_location
+    self.plate_type = plate_type
+    if csv_path:
+        self.csv_data = read_csv(csv_path)
+    self.container = containers.load(plate_type, plate_location)
 
 class Reagent(object):
     """
@@ -7,49 +25,46 @@ class Reagent(object):
     """
     # TODO Check that two reagents dont' clash location
     def __init__(self, reagent_name=None, plate_location=None, plate_type=None, csv_path=None):
-        self.reagent_name = reagent_name
-        self.plate_location = plate_location
-        self.plate_type = plate_type
-        if csv_path:
-            self.csv_data = read_csv(csv_path)
-        self.container = containers.load(plate_type,plate_location)
+        do_install(self,reagent_name,plate_location,plate_type,csv_path)
 
 class ReagentSingle(Reagent):
+    """
+    Class to define a single reagent
+    """
 
-    def __init__(self,compound_id_col, location_col):
-        super.__init__()
+    def __init__(self, reagent_name=None, plate_location=None, plate_type=None, csv_path=None,
+                 compound_id_col=None, location_col=None):
+        do_install(self,reagent_name,plate_location,plate_type,csv_path)
         self.compound_id_col = compound_id_col
         self.location_col = location_col
 
     def get_well(self):
         cmpd_id_list = self.csv_data[self.compound_id_col].tolist()
         for i, val in enumerate(cmpd_id_list):
-            if val == self.name:
+            if val == self.reagent_name:
                 reagent_well = self.csv_data[self.location_col].tolist()[i]
-        return self.container.wells(self.reagent_well)
+        return self.container.wells(reagent_well)
 
 class Pipette(object):
     # TODO SANITIZE AND CHECK THIS ALL MAKES SENSE TOO
     def __init__(self,name=None,axis=None,tiprack=None,trash=None):
-        pipette_dict = {"eppendorf1000":{"max_vol":1000,"min_vol":0,"channels":1},
-                        "dlab300_8": {"max_vol": 300, "min_vol": 10, "channels": 8}}
-        if not name:
-            raise ValueError("MUST SPECIFY NAME")
-        if name not in pipette_dict:
-            raise ValueError("NAME NOT IN OPTIONS "+pipette_dict.keys())
-        return instruments.Pipette(
+        pipette_dict = get_pipette_dict(name)
+        self.pipette = instruments.Pipette(
             name=name,
             axis=axis,
-            trash_container=trash,
-            tip_racks=tiprack,
-            max_volume=pipette_dict[name]["max_vol"],
-            min_volume=pipette_dict[name]["min_vol"],
-            channels=pipette_dict[name]["channels"],
+            trash_container=trash.container,
+            tip_racks=[x.container for x in tiprack],
+            max_volume=pipette_dict["max_vol"],
+            min_volume=pipette_dict["min_vol"],
+            channels=pipette_dict["channels"],
         )
+        self.transfer = self.pipette.transfer
+        self.distribute = self.pipette.distribute
+
 
 class Action(object):
 
-    def __init__(self, pipette, source, destination,
+    def __init__(self, pipette=None, source=None, destination=None,
                  src_vol_col=None,dest_vol_col=None,
                  dest_rack_col=None, src_rack_col=None):
         # TODO CONVENTION IS VOL_COL IS ON SRC CSV FILE
@@ -70,9 +85,10 @@ class Action(object):
 
     def get_vol_list(self):
         if self.src_vol_col:
-            return self.source.csv_data[self.src_vol_col].tolist()
+            # TODO Find a robust way of parsing these - or define standard
+            return [int(float(x)*1000) for x in self.source.csv_data[self.src_vol_col].tolist()]
         elif self.dest_vol_col:
-            return self.destination.csv_data[self.dest_vol_col].tolist()
+            return [int(float(x)*1000) for x in self.destination.csv_data[self.dest_vol_col].tolist()]
         else:
             raise ValueError("Volume not specified")
 

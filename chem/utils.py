@@ -39,3 +39,12 @@ def finish():
     robot.commands()
     robot.home()
 
+
+def get_pipette_dict(name):
+    pipette_dict = {"eppendorf1000":{"max_vol":1000,"min_vol":0,"channels":1},
+                        "dlab300_8": {"max_vol": 300, "min_vol": 10, "channels": 8}}
+    if not name:
+        raise ValueError("MUST SPECIFY NAME")
+    if name not in pipette_dict:
+        raise ValueError("NAME NOT IN OPTIONS " + pipette_dict.keys())
+    return pipette_dict[name]
