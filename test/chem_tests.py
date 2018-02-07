@@ -14,9 +14,25 @@ def setup_action():
     trough_big = ReagentSingle("DMA", "C2", 'trough-12row',
                                os.path.join("test", "data", 'Others_Acylation.csv'),
                                'CPD ID', 'Location rack')
-    action = Action(pipette=p1000.transfer, dest_vol_col='Volume to add for 0.8M (uL)',
+    action = Action(pipette=p1000, dest_vol_col='Volume to add for 0.8M (uL)',
                     source=trough_big, destination=reagent_1, dest_rack_col='Location rack')
     return action
+
+
+def setup_distribute():
+    reagent_1 = Reagent("amines", "B1", 'FluidX_24_5ml',
+                        os.path.join("test", "data", "Amine_Acylation_2.csv"))
+    reaction_rack = Reagent("reaction", 'C1', 'FluidX_96_tall')
+    # Define tash
+    trash = Reagent("trash", 'C3', 'point')
+    tiprack1 = Reagent("tiprack-1000", 'B3', 'tiprack-1000ul')
+    # Define the pipettes
+    p1000 = Pipette("eppendorf1000", "a", [tiprack1], trash)
+    action = Action(pipette=p1000, src_vol_col='Volume per reaction (uL)',
+           source=reagent_1, destination=reaction_rack,
+           src_rack_col='Location rack')
+    return action
+
 
 def get_action_data():
     return ['Picking up tip from <Deck><Slot B3><Container tiprack-1000ul><Well A1>',
@@ -141,9 +157,14 @@ class ModelTest(unittest.TestCase):
         self.assertEqual(len(action.get_dest_wells(None)),8)
         self.assertEqual(action.get_src_wells(None).get_name(),"A1")
 
-    def test_action(self):
+    def test_action_transfer(self):
         data = get_action_data()
         action = setup_action()
         action.transfer(src_offset=-30)
         commands = robot.commands()
         self.assertListEqual(commands,data)
+
+    def test_action_distribute(self):
+        action = setup_distribute()
+        action.distribute("rows",dst_offset=-15)
+        self.assertEqual(len(robot.commands()),32)

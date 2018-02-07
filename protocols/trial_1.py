@@ -23,17 +23,16 @@ tiprack2 = Reagent("tiprack-300", 'D3','tiprack-300ul')
 p1000 = Pipette("eppendorf1000","a",[tiprack1],trash)
 p300_multi = Pipette('dlab300_8',"b",[tiprack2],trash)
 # Dilute reagents one and two
-Action(pipette=p1000.transfer, dest_vol_col='Volume to add for 0.8M (uL)',
+Action(pipette=p1000, dest_vol_col='Volume to add for 0.8M (uL)',
        source=trough_big, destination=reagent_1, src_rack_col='Location rack').transfer(dst_offset=-30)
-Action(pipette=p1000.transfer, source=trough_big, destination=reagent_2,
+Action(pipette=p1000, source=trough_big, destination=reagent_2,
        dest_vol_col='Volume to add for 0.8M (uL)', dest_rack_col='Location rack').transfer(dst_offset=-30)
 # Distribute reagent one as rows
-Action(pipette=p1000.distribute, src_vol_col='Volume per reaction (uL)',
+Action(pipette=p1000, src_vol_col='Volume per reaction (uL)',
        source=reagent_1, destination=reaction_rack,
        src_rack_col='Location rack').distribute("cols",dst_offset=-15)
 # Distribute reagent two as rows
-Action(pipette=p1000.distribute, src_vol_col='Volume per reaction (uL)',
+Action(pipette=p1000, src_vol_col='Volume per reaction (uL)',
        source=reagent_2, destination=reaction_rack,
        src_rack_col='Location rack').distribute("rows",dst_offset=-15)
-
 finish()

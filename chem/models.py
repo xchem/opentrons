@@ -80,15 +80,18 @@ class Action(object):
 
         # Now some tests
         self.get_vol_list()
-        self.get_dest_list()
-        self.get_src_list()
+        # One of these much works
+        try:
+            self.get_dest_list()
+        except:
+            self.get_src_list()
 
     def get_vol_list(self):
         if self.src_vol_col:
-            # TODO Find a robust way of parsing these - or define standard
-            return [int(float(x)*1000) for x in self.source.csv_data[self.src_vol_col].tolist()]
+            # TODO Find a robust way of parsing these - or define standards. I'd say all volumes in uL
+            return [int(float(x)) for x in self.source.csv_data[self.src_vol_col].tolist()]
         elif self.dest_vol_col:
-            return [int(float(x)*1000) for x in self.destination.csv_data[self.dest_vol_col].tolist()]
+            return [int(float(x)) for x in self.destination.csv_data[self.dest_vol_col].tolist()]
         else:
             raise ValueError("Volume not specified")
 
@@ -137,23 +140,23 @@ class Action(object):
         return out_wells
 
     def transfer(self,src_offset=None,dst_offset=None):
-        self.pipette(self.get_vol_list(),
+        self.pipette.transfer(self.get_vol_list(),
                      self.get_src_wells(src_offset),
                      self.get_dest_wells(dst_offset))
 
-    def distribtue(self,how,dst_offset=None):
+    def distribute(self,how,dst_offset=None):
         wells = self.convert_to_wells(self.source, self.get_src_list())
         vols = self.get_vol_list()
         if how == "rows":
             for i,well in enumerate(wells):
                 if dst_offset:
-                    self.distribtue(vols[i],well,self.destination.rows(i).bottom(dst_offset))
+                    self.pipette.distribute(vols[i],well,self.destination.container.rows(i).bottom(dst_offset))
                 else:
-                    self.distribtue(vols[i],well,self.destination.rows(i))
+                    self.pipette.distribute(vols[i],well,self.destination.container.rows(i))
         elif how == "cols":
             for i,well in enumerate(wells):
                 if dst_offset:
-                    self.distribtue(vols[i], well, self.destination.cols(i).bottom(dst_offset))
+                    self.pipette.distribute(vols[i], well, self.destination.container.cols(i).bottom(dst_offset))
                 else:
-                    self.distribtue(vols[i],well,self.destination.cols(i))
+                    self.pipette.distribute(vols[i],well, self.destination.container.cols(i))
 
