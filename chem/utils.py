@@ -42,7 +42,7 @@ def convert_to_df(lines):
     return df
 
 def read_csv_string(input_data):
-    lines = input_data.split("\n")
+    lines = [x for x in input_data.split("\n") if x]
     return convert_to_df(lines)
 
 def finish():
