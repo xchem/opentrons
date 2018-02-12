@@ -1,3 +1,5 @@
+import inspect,os, sys
+
 class Vector(object):
     def tolist(self):
         return list(self.input_list)
@@ -23,8 +25,11 @@ class DataFrame(object):
         self.length = length
 
 
-def read_csv(input_file):
+def read_csv_file(input_file):
     lines = open(input_file).readlines()
+    return convert_to_df(lines)
+
+def convert_to_df(lines):
     header = lines[0].rstrip().split(",")
     out_d = {}
     for head in header:
@@ -35,6 +40,10 @@ def read_csv(input_file):
             out_d[head].append(spl_line[i])
     df = DataFrame(out_d, len(lines[1:]))
     return df
+
+def read_csv_string(input_data):
+    lines = input_data.split("\n")
+    return convert_to_df(lines)
 
 def finish():
     robot.commands()
@@ -49,3 +58,14 @@ def get_pipette_dict(name):
     if name not in pipette_dict:
         raise ValueError("NAME NOT IN OPTIONS " + pipette_dict.keys())
     return pipette_dict[name]
+
+
+
+def get_script_dir(follow_symlinks=True):
+    if getattr(sys, 'frozen', False): # py2exe, PyInstaller, cx_Freeze
+        path = os.path.abspath(sys.executable)
+    else:
+        path = inspect.getabsfile(get_script_dir)
+    if follow_symlinks:
+        path = os.path.realpath(path)
+    return os.path.dirname(path)

@@ -1,8 +1,8 @@
-from chem.utils import read_csv, get_pipette_dict
+from chem.utils import read_csv_file,read_csv_string, get_pipette_dict
 from opentrons import containers, instruments, robot
 
 
-def do_install(self,reagent_name,plate_location,plate_type,csv_path):
+def do_install(self,reagent_name,plate_location,plate_type,csv_path,csv_data):
     """
 
     :param self:
@@ -16,7 +16,10 @@ def do_install(self,reagent_name,plate_location,plate_type,csv_path):
     self.plate_location = plate_location
     self.plate_type = plate_type
     if csv_path:
-        self.csv_data = read_csv(csv_path)
+        self.csv_data = read_csv_file(csv_path)
+    elif csv_data:
+        self.csv_data = read_csv_string(csv_data)
+
     self.container = containers.load(plate_type, plate_location)
 
 class Reagent(object):
@@ -24,8 +27,8 @@ class Reagent(object):
     Class to define an opentrons reagent
     """
     # TODO Check that two reagents dont' clash location
-    def __init__(self, reagent_name=None, plate_location=None, plate_type=None, csv_path=None):
-        do_install(self,reagent_name,plate_location,plate_type,csv_path)
+    def __init__(self, reagent_name=None, plate_location=None, plate_type=None, csv_path=None, csv_data=None):
+        do_install(self,reagent_name,plate_location,plate_type,csv_path,csv_data)
 
 class ReagentSingle(Reagent):
     """
@@ -33,8 +36,8 @@ class ReagentSingle(Reagent):
     """
 
     def __init__(self, reagent_name=None, plate_location=None, plate_type=None, csv_path=None,
-                 compound_id_col=None, location_col=None):
-        do_install(self,reagent_name,plate_location,plate_type,csv_path)
+                 compound_id_col=None, location_col=None,csv_data=None):
+        do_install(self,reagent_name,plate_location,plate_type,csv_path,csv_data)
         self.compound_id_col = compound_id_col
         self.location_col = location_col
 

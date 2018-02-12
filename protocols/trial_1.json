@@ -1,0 +1,116 @@
+{
+  "reagents": [
+    {
+      "reagent_name": "amines",
+      "plate_location": "B1",
+      "plate_type": "FluidX_24_5ml",
+      "csv_path": [
+        "data",
+        "Amine_Acylation_2.csv"
+      ]
+    },
+    {
+      "reagent_name": "acids",
+      "plate_location": "B2",
+      "plate_type": "FluidX_24_9ml",
+      "csv_path": [
+        "data",
+        "AC_Acylation.csv"
+      ]
+    },
+    {
+      "reagent_name": "Control",
+      "plate_location": "D2",
+      "plate_type": "trough-12row",
+      "csv_path": [
+        "data",
+        "Others_Acylation.csv"
+      ],
+      "compound_id_col": "CPD ID",
+      "location_col": "Location rack"
+    },
+    {
+      "reagent_name": "DMA",
+      "plate_location": "C2",
+      "plate_type": "trough-12row",
+      "csv_path": [
+        "data",
+        "Others_Acylation.csv"
+      ],
+      "compound_id_col": "CPD ID",
+      "location_col": "Location rack"
+    },
+    {
+      "reagent_name": "reaction",
+      "plate_location": "C1",
+      "plate_type": "FluidX_96_tall"
+    },
+    {
+      "reagent_name": "trash",
+      "plate_location": "C3",
+      "plate_type": "point"
+    },
+    {
+      "reagent_name": "tiprack-1000",
+      "plate_location": "B3",
+      "plate_type": "tiprack-1000ul"
+    },
+    {
+      "reagent_name": "tiprack-300",
+      "plate_location": "D3",
+      "plate_type": "tiprack-300ul"
+    }
+  ],
+  "pipettes":[
+    {
+      "pipette_name": "p1000",
+      "axis": "a",
+      "tiprack": ["tiprack-1000"],
+      "trash": "trash"
+    },
+    {
+      "pipette_name": "p300",
+      "axis": "b",
+      "tiprack": ["tiprack-300"],
+      "trash": "trash"
+    }
+  ],
+  "actions": [
+    {
+      "pipette": "p1000",
+      "dest_vol_col": "Volume to add for 0.8M (uL)",
+      "source": "DMA",
+      "destination": "amines",
+      "dest_rack_col": "Location rack",
+      "mode": "transfer",
+      "offset": -30
+    },
+    {
+      "pipette": "p1000",
+      "dest_vol_col": "Volume to add for 0.8M (uL)",
+      "source": "DMA",
+      "destination": "acids",
+      "dest_rack_col": "Location rack",
+      "mode": "transfer",
+      "offset": -30
+    },
+    {
+      "pipette": "p1000",
+      "src_vol_col":"Volume per reaction (uL)",
+      "source": "amines",
+      "destination": "reaction",
+      "src_rack_col": "Location rack",
+      "mode": "distribute-rows",
+      "offset": -15
+    },
+    {
+      "pipette": "p1000",
+      "src_vol_col":"Volume per reaction (uL)",
+      "source": "acids",
+      "destination": "reaction",
+      "src_rack_col": "Location rack",
+      "mode": "distribute-cols",
+      "offset": -15
+    }
+  ]
+}

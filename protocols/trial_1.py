@@ -3,16 +3,16 @@ from chem.models import Reagent,ReagentSingle,Pipette,Action
 import os
 
 # Define the plates and platemaps of reagents
-reagent_1 = Reagent("amines", "B1", 'FluidX_24_5ml',
-                    os.path.join("..","test","data","Amine_Acylation_2.csv"))
+reagent_1 = Reagent(reagent_name="amines", plate_location="B1", plate_type='FluidX_24_5ml',
+                    csv_path=os.path.join("data","Amine_Acylation_2.csv"))
 reagent_2 = Reagent("acids", "B2", 'FluidX_24_9ml',
-                    os.path.join("..","test","data","AC_Acylation.csv"))
+                    csv_path=os.path.join("data","AC_Acylation.csv"))
 trough = ReagentSingle("Control", "D2", 'trough-12row',
-                       os.path.join("..","test","data",'Others_Acylation.csv'),
-                       'CPD ID','Location rack')
+                       'CPD ID','Location rack',
+                       csv_path=os.path.join("data",'Others_Acylation.csv'))
 trough_big = ReagentSingle("DMA", "C2", 'trough-12row',
-                           os.path.join("..","test","data",'Others_Acylation.csv'),
-                           'CPD ID','Location rack')
+                           'CPD ID','Location rack',
+                           csv_path=os.path.join("data",'Others_Acylation.csv'))
 # Define the location of reaction plate
 reaction_rack = Reagent("reaction", 'C1', 'FluidX_96_tall')
 # Define the location of the trash and tipracks
