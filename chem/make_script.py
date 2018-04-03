@@ -79,7 +79,7 @@ def generate_action(action):
     """
     base_args = "Action("
     skip_list = ["mode","offset"]
-    str_list = ["destination","source"]
+    str_list = ["destination","source","pipette"]
     for key in action:
         if key in skip_list:
             continue

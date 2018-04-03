@@ -1,0 +1,10 @@
+CPD ID,Structure,Original Name,Rack position,Total weight,Max volume in rack (4 mL),MW (g.mol-1),weight (mg),DMA,Total Mol,No RXNs,No. Azide,SMILES,Reaction Scale (mmol),Equivalent,Quant Reagent (mmol),Volume per reaction (uL),nb reaction per plate,Volume needed (uL)
+AZ1,C6H4ClN3,1-azido-2-chlorobenzene,A1,10 mL,2.5,153.57,,NA,NA,NA,NA,ClC1=C(N=[N+]=[N-])C=CC=C1,0.05,1,0.05,100,9,900
+AZ2,C7H4F3N3,1-Azido-2-(trifluoromethyl)benzene,A2,10 mL,2.5,187.13,,NA,NA,NA,NA,[N-]=[N+]=NC1=C(C(F)(F)F)C=CC=C1,0.05,1,0.05,100,9,900
+AZ3,C7H7N3,2-azidotoluene,A3,10 mL,2.5,133.15,,NA,NA,NA,NA,CC1=C(N=[N+]=[N-])C=CC=C1,0.05,1,0.05,100,9,900
+AZ4,C6H5N3,Azidobenzene,A4,10 mL,2.5,119.13,,NA,NA,NA,NA,[N-]=[N+]=NC1=CC=CC=C1,0.05,1,0.05,100,9,900
+AZ5,C7H7N3,3-azidotoluene,A5,10 mL,2.5,133.15,,NA,NA,NA,NA,CC1=CC=CC(N=[N+]=[N-])=C1,0.05,1,0.05,100,9,900
+AZ6,C6H4ClN3,1-azido-3-chlorobenzene,A6,10 mL,2.5,153.57,,NA,NA,NA,NA,ClC1=CC=CC(N=[N+]=[N-])=C1,0.05,1,0.05,100,9,900
+AZ7,C7H4F3N3,1-Azido-3-(trifluoromethyl)benzene solution 22001-17-8,B1,10 mL,2.5,187.13,,NA,NA,NA,NA,[N-]=[N+]=NC1=CC(C(F)(F)F)=CC=C1,0.05,1,0.05,100,9,900
+AZ8,C6H4ClN3,1-Azido-4-chlorobenzene,B2,10 mL,2.5,153.57,,NA,NA,NA,NA,ClC1=CC=C(N=[N+]=[N-])C=C1,0.05,1,0.05,100,9,900
+AZ9,C7H7N3,4-azidotoluene,B3,10 mL,2.5,133.15,,NA,NA,NA,NA,CC1=CC=C(N=[N+]=[N-])C=C1,0.05,1,0.05,100,9,900

@@ -3,3 +3,4 @@ tqdm
 numpy
 nose
 opentrons
+PyYAML

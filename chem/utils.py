@@ -1,71 +1,17 @@
-import inspect,os, sys
+class FileHolder(object):
+    def __init__(self,name="NULL",data="NULL"):
+        self.name = name
+        self.data = data
 
-class Vector(object):
-    def tolist(self):
-        return list(self.input_list)
+def get_vol_pos_list(csv_file,vol_col_header,rack_col_header):
+    header_col = csv_file.split("\n")[0].split(",")
+    cols = [x for x in csv_file.split("\n")[1:] if x]
+    vol_pos_list = []
+    for i,line in enumerate(cols):
+        for j, col in enumerate(header_col):
+            if col == vol_col_header:
+                vol_to_add = float(line.split(",")[j].rstrip())
+            if col == rack_col_header:
+                pos_to_take = str(line.split(",")[j].rstrip())
+        vol_pos_list.append((vol_to_add,pos_to_take))
 
-    def astype(self, input_type):
-        if input_type == int:
-            return Vector([int(float(x)) for x in self.input_list])
-        return Vector([input_type(x) for x in self.input_list])
-
-    def __init__(self, input_list):
-        self.input_list = input_list
-
-
-class DataFrame(object):
-    def __len__(self):
-        return self.length
-
-    def __getitem__(self, value):
-        return Vector(self.dict_input[value])
-
-    def __init__(self, dict_input, length):
-        self.dict_input = dict_input
-        self.length = length
-
-
-def read_csv_file(input_file):
-    lines = open(input_file).readlines()
-    return convert_to_df(lines)
-
-def convert_to_df(lines):
-    header = lines[0].rstrip().split(",")
-    out_d = {}
-    for head in header:
-        out_d[head] = []
-    for line in lines[1:]:
-        spl_line = line.rstrip().split(",")
-        for i, head in enumerate(header):
-            out_d[head].append(spl_line[i])
-    df = DataFrame(out_d, len(lines[1:]))
-    return df
-
-def read_csv_string(input_data):
-    lines = [x for x in input_data.split("\n") if x]
-    return convert_to_df(lines)
-
-def finish():
-    robot.commands()
-    robot.home()
-
-
-def get_pipette_dict(name):
-    pipette_dict = {"eppendorf1000":{"max_vol":1000,"min_vol":0,"channels":1},
-                        "dlab300_8": {"max_vol": 300, "min_vol": 10, "channels": 8}}
-    if not name:
-        raise ValueError("MUST SPECIFY NAME")
-    if name not in pipette_dict:
-        raise ValueError("NAME NOT IN OPTIONS " + pipette_dict.keys())
-    return pipette_dict[name]
-
-
-
-def get_script_dir(follow_symlinks=True):
-    if getattr(sys, 'frozen', False): # py2exe, PyInstaller, cx_Freeze
-        path = os.path.abspath(sys.executable)
-    else:
-        path = inspect.getabsfile(get_script_dir)
-    if follow_symlinks:
-        path = os.path.realpath(path)
-    return os.path.dirname(path)
