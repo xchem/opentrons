@@ -1,27 +1,27 @@
 reagents:
-  - azides:
-    path: "/Users/abradley/opentrons/data/example_azides.csv"
-    num_reagents: 8 # Optional but a good sanity check
-  - alkynes:
-    path: "/Users/abradley/opentrons/data/example_azides.csv"
-    num_reagents: 9 # Optional but a good sanity check
+  azides:
+      path: "/Users/abradley/opentrons/data/example_azides.csv"
+      num_reagents: 8 # Optional but a good sanity check
+  alkynes:
+      path: "/Users/abradley/opentrons/data/example_azides.csv"
+      num_reagents: 9 # Optional but a good sanity check
 couplers:
-  - path: "/Users/abradley/opentrons/data/example_trough.csv"
-  - reagents:
+  path: "/Users/abradley/opentrons/data/example_trough.csv"
+  reagents:
     - DMA
     - Acscorbate
     - water
     - Cu
 processes:
-  - dilute_24_well:
-    - solvent: DMA
-    - reagent_one: alkynes
-    - reagent_two: azides
-  - do_reaction:
-    - reagent_one: alkynes
-    - reagent_two: azides
-    - reaction_smarts: "[H:1][C:2]#[C:3].[N-:4]=[N+:5]=[N:6][c:7]>>[H:1][C:2]1=[C:3][N:4]=[N:5]-[N:6]1[c:7]" # This is so SMARTS can define the output
-  - add_to_all:
-      - Cu: 5
-      - Ascorbate: 15
-      - water: 30
+  dilute_24_well:
+    solvent: DMA
+    reagent_one: alkynes
+    reagent_two: azides
+  do_reaction:
+    reagent_col: alkynes
+    reagent_row: azides
+    reaction_smarts: "[H:1][C:2]#[C:3].[N-:4]=[N+:5]=[N:6][c:7]>>[H:1][C:2]1=[C:3][N:4]=[N:5]-[N:6]1[c:7]" # This is so SMARTS can define the output
+  add_to_all:
+      Cu: 5
+      Ascorbate: 15
+      water: 30

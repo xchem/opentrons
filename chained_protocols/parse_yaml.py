@@ -1,5 +1,5 @@
 import yaml,os
-from xchem_ot.protocols.do_reaction import DoReaction
+from protocols.do_reaction import DoReaction
 
 makefiles = {'do_reaction': DoReaction}
 
@@ -8,14 +8,16 @@ reagents = input_dict["reagents"]
 couplers = input_dict["couplers"]
 processes = input_dict["processes"]
 this_dir = "NEW_DIR"
-os.mkdir()
-for process in processes:
+#TODO
+os.mkdir(this_dir)
+for name in processes:
     # Inject data into script
-    if process in makefiles:
-        process = makefiles[process](reagents,couplers)
+    process = processes[name]
+    if name in makefiles:
+        procedure = makefiles[name](process,reagents,couplers)
     else:
         continue
-    for f in process.files:
-        out_f = os.path.join(this_dir,f.name)
+    for f in procedure.files:
+        out_f = open(os.path.join(this_dir,f.name),"w")
         out_f.write(f.data)
         out_f.close()

@@ -1,7 +1,8 @@
 import sys
 from chem.utils import get_vol_pos_list,FileHolder
 
-setup = """from opentrons import containers, instruments,robot
+setup = """
+from opentrons import containers, instruments,robot
 tiprack = containers.load("tiprack-1000ul", "B3")
 source_row = containers.load("FluidX_24_5ml", "B1")
 source_col = containers.load("FluidX_24_5ml", "B2")
@@ -33,15 +34,15 @@ for vol,pos in vol_pos_list_two:
 
 
 class DoReaction():
-    def __init__(self,reactants):
+    def __init__(self,process,reactants,couplers):
         self.setup = setup
         self.do_protocol = do_protocol
         vol_col_header = "Volume per reaction (uL)"
         rack_col_header = "Rack position"
-        self.row_csv_file = sys.argv[1]
-        self.col_csv_file = sys.argv[2]
-        self.vol_pos_list_one = get_vol_pos_list(self.col_csv_file)
-        self.vol_pos_list_two = get_vol_pos_list(self.row_csv_file)
+        self.row_csv_file = reactants[process["reagent_row"]]["path"]
+        self.col_csv_file = reactants[process["reagent_col"]]["path"]
+        self.vol_pos_list_one = get_vol_pos_list(open(self.col_csv_file).read(),vol_col_header,rack_col_header)
+        self.vol_pos_list_two = get_vol_pos_list(open(self.row_csv_file).read(),vol_col_header,rack_col_header)
         self.data = setup
         self.data += "vol_pos_list_one = "+str(self.vol_pos_list_one) + "\n"
         self.data += "vol_pos_list_two = "+str(self.vol_pos_list_two) + "\n"

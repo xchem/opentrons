@@ -14,4 +14,5 @@ def get_vol_pos_list(csv_file,vol_col_header,rack_col_header):
             if col == rack_col_header:
                 pos_to_take = str(line.split(",")[j].rstrip())
         vol_pos_list.append((vol_to_add,pos_to_take))
+    return vol_pos_list
 
