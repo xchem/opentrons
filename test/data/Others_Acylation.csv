@@ -1,7 +1,0 @@
-CPD ID,Structure,Original Name,Rack Type,Max volume in rack (4 mL),Rack Barcode,Vial Barcode,Location rack,Location 1536 XCHEM,Chemist,Salt,SMILES,weight (mg),MW (g.mol-1),Density,Volume of reagent,Volume to add for 2M (uL),Reaction Scale (mmol),Equivalent,Quant Reagent (mmol),Volume per reaction (uL),nb reaction per plate,Volume needed (mL)
-TEA,,Triethylamine,Trough,,,,A4,,,,,,101.19,0.726,NA,,0.08,2.5,0.2,27.87603306,96,2.676099174
-DMA,,dimethylacetamide,Solvent_Trough,,,,A1,,,,,,,,,,,,,,,
-Control,,trimethoxybenzene,Trough,,,,A7,,,,,2018,168.19,,,5997,0.08,0.5,0.04,20,96,1.92
-MeOH,,methanol,Solvent_Trough,,,,A8,,,,,,,,,,,,,100,,
-DCM,,dichloromethane,Solvent_Trough,,,,A5,,,,,,,,,,,,,300,,
-Aqueous,,Ammonium chloride and water,Solvent_Trough,,,,A11,,,,,,,,,,,,,300,,
