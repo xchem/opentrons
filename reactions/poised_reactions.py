@@ -3,9 +3,6 @@ import os
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
-from pipelines_utils import utils
-
-
 class Filter(object):
 
     def __init__(self, *args, **kwargs):
@@ -30,7 +27,7 @@ class Filter(object):
   '[CH2:2]-[#7R0:1]>>[#7:1].[#6:2]Br',
   '[CH3:2]-[#7R0:1]>>[#7:1].[#6:2]Br',
   '[CH0R0:2]-[#7:1]>>[#7:1].[#6:2]Br'],
- 'Oxadiazole': ['[#6:6][c:4]1[n:5][o:3][c:1][n:2]1>>[O:2]-[C:1]=[O:3].[#6:6][C:4]#[N:5]'],
+            'Oxadiazole': ['[#6:6][c:4]1[n:5][o:3][c:1][n:2]1>>[O:2]-[C:1]=[O:3].[#6:6][C:4]#[N:5]'],
  'Reductive_Amination': ['[CH1:2]-[#7R0:1]>>[#7:1].[#6:2]=O',
   '[CH2R0:2]-[#7:1]>>[#7:1].[#6:2]=O',
   '[CH1R0:2]-[#7:1]>>[#7:1].[#6:2]=O',
@@ -50,6 +47,9 @@ class Filter(object):
                     '[OH1][C:2]=[O:3].[#7:1]>>[#7:1][C:2]=[O:3]',
                     '[NH2:1].Cl[C:2]=[O:3]>>[#7:1][C:2]=[O:3]',
                     '[NH1:1].Cl[C:2]=[O:3]>>[#7:1][C:2]=[O:3]'],
+                                 'alkyne_azides': [
+                                     '[H:1][C:2]#[C:3].[N-:4]=[N+:5]=[N:6][c:7]>>[H:1][C:2]1=[C:3][N:4]=[N:5]-[N:6]1[c:7]',
+                                 '[N-:4]=[N+:5]=[N:6][c:7].[H:1][C:2]#[C:3]>>[H:1][C:2]1=[C:3][N:4]=[N:5]-[N:6]1[c:7]'],
                                  'Sarah_Cu': [
                                      '[#6:1][N:2]=[N+:3]=[N-1:4].[C:5]#[C:6][C:7]>>[c:5]1=[c:6]([n:4]=[n:3][n:2]1[#6:1])[#6:7]',
                                            ],
@@ -213,7 +213,6 @@ class Filter(object):
         products = [Chem.MolFromSmiles(x) for x in self.unique_products(self.run_reaction(input_molecule,reactant_mol,react_seq)) if Chem.MolFromSmiles(x)]
         for product in products:
             i+=1
-            utils.generate_2d_coords(product)
             if mol_uuid:
                 product.SetProp("source_uuid", mol_uuid)
             if reactant_uuid:

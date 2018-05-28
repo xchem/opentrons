@@ -1,0 +1,25 @@
+name: "acylation"
+row_csv: "/Users/abradley/opentrons/Crude_template/Acylation/SM_AcCl.csv"
+col_csv: "/Users/abradley/opentrons/Crude_template/Acylation/SM_Amine.csv"
+trough_csv: "/Users/abradley/opentrons/Crude_template/Acylation/Others.csv"
+processes:
+  0:
+    stock_solution:
+  1:
+    multi_base:
+  2:
+    mono_dispensing:
+  3:
+    sm_transfer:
+  4:
+    reaction_qc:
+  5:
+    dma_transfer:
+  6:
+    workup:
+  7:
+    post_workup_transfer:
+  8:
+    post_workup_dmso_addition:
+  9:
+    post_workup_qc_and_transfer:
