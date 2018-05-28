@@ -20,10 +20,10 @@ dispensing occurs.'''
         self.index = index
 
         # Define the headers
-        id_header = "CPD ID"
-        solvent = "Solvent"
-        location_header = "Location"
-        volume_stock_header = "Volume to dispense (exp) at 0.8M"
+        id_header = process["id_header"]
+        solvent = process["solvent"]
+        location_header = process["location_header"]
+        volume_stock_header = process["volume_stock_header"]
 
         # CSV file data
         row_csv = input_dict["row_csv"]
@@ -45,7 +45,6 @@ dispensing occurs.'''
 
     def do_setup(self):
         return """
-from opentrons import robot, containers, instruments
 robot.head_speed(x=18000,  y=18000,  z=5000, a=700, b=700)
 #Deck setup
 tiprack_1000 = containers.load("tiprack-1000ul-H", "B3")
@@ -96,10 +95,11 @@ This protocol reads the other csv file and dispense the volume written. '''
         self.name = name
         self.index = index
 
-        id_header = "CPD ID"
-        location_header = "Location"
-        base = "TEA"
-        volume_per_well = "Volume per well (ul)"
+
+        id_header = process["id_header"]
+        location_header = process["location_header"]
+        base = process["base"]
+        volume_per_well = process["volume_per_well_header"]
 
         # CSV file data
         row_csv = input_dict["row_csv"]
@@ -159,9 +159,10 @@ Acids are dispensed in rows, Amines are dispensed in columns.'''
         self.name = name
         self.index = index
         # Set the headers
-        location_header = "Location"
-        volume_col_header = "AM volume per reaction at 0.8M"
-        volume_row_header = "AC volume per reaction at 0.8M"
+        location_header = process["location_header"]
+        volume_col_header = process["volume_col_header"]
+        volume_row_header = process["volume_row_header"]
+
 
         # CSV file data
         row_csv = input_dict["row_csv"]
@@ -231,13 +232,14 @@ function Screen: transfer 30 to 384PP labcyte. Starts at A14, B14.... so that yo
         self.name = name
         self.index = index
 
-        id_header = "CPD ID"
-        location_header = "Location"
-        solvent_QC = "MeCN"
-        volume_screen_header = "Volume to take out Screen"
-        volume_QC_header = "Volume to take out QC"
-        volume_per_well_header = "Volume per well (ul)"
-        reaction_mixture = "Reaction mixture"
+        # List of headers
+        id_header = process["id_header"]
+        location_header = process["location_header"]
+        solvent_QC = process["solvent_QC"]
+        volume_screen_header = process["volume_screen_header"]
+        volume_QC_header = process["volume_QC_header"]
+        volume_per_well_header = process["volume_per_well_header"]
+        reaction_mixture = process["reaction_mixture"]
 
         # CSV file data
         row_csv = input_dict["row_csv"]
@@ -323,12 +325,13 @@ Same as before, ths pipette has no minimum
         self.name = name
         self.index = index
 
-        id_header = "CPD ID"
-        solvent_QC = "MeCN"
-        location_header = "Location"
-        volume_QC_header = "Volume to take out Screen"
-        volume_per_well_header = "Volume per well (ul)"
-        reaction_mixture = "Reaction mixture"
+
+        id_header = process["id_header"]
+        solvent_QC = process["solvent_QC"]
+        location_header = process["location_header"]
+        volume_QC_header = process["volume_QC_header"]
+        volume_per_well_header = process["volume_per_well_header"]
+        reaction_mixture = process["reaction_mixture"]
 
 
         # CSV file data
@@ -396,9 +399,9 @@ What is needed is the number of rows where reaction mixture needs to be taken ou
         self.name = name
         self.index = index
 
-        id_header = "CPD ID"
-        reaction_mixture = "Reaction mixture"
-        volume_screen_header = "Volume to take out Screen"
+        id_header = process["id_header"]
+        reaction_mixture = process["reaction_mixture"]
+        volume_screen_header = process["volume_screen_header"]
 
         # CSV file data
         trough_csv = input_dict["trough_csv"]
@@ -458,12 +461,12 @@ class Workup(BuildProtocol):
         self.name = name
         self.index = index
 
-
-        id_header = "CPD ID"
-        wup_solvent = "DCM"
-        aqueous = "Aqueous"
-        location_header = "Location"
-        volume_per_well_header = "Volume per well (ul)"
+        # Headers
+        id_header = process["id_header"]
+        wup_solvent = process["wup_solvent"]
+        aqueous = process["aqueous"]
+        location_header = process["location_header"]
+        volume_per_well_header = process["volume_per_well_header"]
 
         # CSV file data
         row_csv = input_dict["row_csv"]
@@ -535,11 +538,11 @@ Also,this is where studies need to be done regarding pre wetting and speed of as
         self.index = index
 
 
-        id_header = "CPD ID"
-        location_header = "Location"
-        reaction_mixture = "Reaction mixture"
-        volume_per_well_header = "Volume per well (ul)"
-        wup_solvent = "DCM"
+        id_header = process["id_header"]
+        location_header = process["location_header"]
+        reaction_mixture = process["reaction_mixture"]
+        volume_per_well_header = process["volume_per_well_header"]
+        wup_solvent = process["wup_solvent"]
 
         # CSV file data
         row_csv = input_dict["row_csv"]
@@ -602,11 +605,11 @@ in d6-dmso or dmso. The amount of dmso needs to be calculated, and depends on th
         self.name = name
         self.index = index
 
+        id_header = process["id_header"]
+        dmso = process["dmso"]
+        location_header = process["location_header"]
+        volume_per_well_header = process["volume_per_well_header"]
 
-        id_header = "CPD ID"
-        dmso = "d6-DMSO"
-        location_header = "Location"
-        volume_per_well_header = "Volume per well (ul)"
 
         # CSV file data
         input_dict["row_csv"]
@@ -661,6 +664,40 @@ class PostWorkupQCAndTransfer(BuildProtocol):
     Dispensing for screening plate starts at A1, using the 300 multichannel'''
 
 
+    def __init__(self,process,input_dict,name,index):
+        super().__init__()
+        self.process = process
+        self.input_dict = input_dict
+        self.name = name
+        self.index = index
+
+
+        # Define the headers
+        id_header = process["id_header"]
+        solvent_QC = process["solvent_QC"]
+        location_header = process["location_header"]
+        volume_per_well_header = process["volume_per_well_header"]
+        reaction_mixture = process["reaction_mixture"]
+        volume_QC_header = process["volume_QC_header"]
+        volume_screen_header = process["volume_screen_header"]
+
+        # CSV file data
+        row_csv = input_dict["row_csv"]
+        trough_csv = input_dict["trough_csv"]
+
+        self.trough_vars = {
+            "path": trough_csv,
+            "id_header": id_header,
+            "volume_QC": {"col_header": volume_QC_header, "solvent_name": reaction_mixture},
+            "volume_screen": {"col_header": volume_screen_header, "solvent_name": reaction_mixture},
+            "location_QC_solvent": {"col_header": location_header, "solvent_name": solvent_QC},
+            "volume_screen": {"col_header": volume_per_well_header, "solvent_name": solvent_QC},
+        }
+
+        self.single_vars = {
+            "number_rows": get_number_rows(row_csv)
+        }
+
     def __str__(self):
         return "post_workup_qc_and_transfer"
 
@@ -700,37 +737,6 @@ for i in range (0, number_rows+1):
     p300_multi.drop_tip()
 p300_multi.distribute(volume_QC_solvent, source_trough4row.wells(location_QC_solvent), [x.top() for x in destination_QC.wells(0, to=number_rows)])
 '''
-    def __init__(self,process,input_dict,name,index):
-        super().__init__()
-        self.process = process
-        self.input_dict = input_dict
-        self.name = name
-        self.index = index
-        # Define the headers
-        id_header = "CPD ID"
-        solvent_QC = "MeCN"
-        location_header = "Location"
-        volume_per_well_header = "Volume per well (ul)"
-        reaction_mixture = "Reaction mixture"
-        volume_QC_header = "Volume to take out QC"
-        volume_screen_header = "Volume to take out Screen"
-
-        # CSV file data
-        row_csv = input_dict["row_csv"]
-        trough_csv = input_dict["trough_csv"]
-
-        self.trough_vars = {
-            "path": trough_csv,
-            "id_header": id_header,
-            "volume_QC": {"col_header": volume_QC_header, "solvent_name": reaction_mixture},
-            "volume_screen": {"col_header": volume_screen_header, "solvent_name": reaction_mixture},
-            "location_QC_solvent": {"col_header": location_header, "solvent_name": solvent_QC},
-            "volume_screen": {"col_header": volume_per_well_header, "solvent_name": solvent_QC},
-        }
-
-        self.single_vars = {
-            "number_rows": get_number_rows(row_csv)
-        }
 
 
 class BaseT3PMulti(BuildProtocol):
@@ -750,12 +756,13 @@ class BaseT3PMulti(BuildProtocol):
         self.input_dict = input_dict
         self.name = name
         self.index = index
+
         # Define the headers
-        id_header = "CPD ID"
-        location_header = "Location"
-        base = "DIPEA"
-        coupling_agent = "T3P"
-        volume_per_well = "Volume per well (ul)"
+        id_header = process["id_header"]
+        location_header = process["location_header"]
+        base = process["base"]
+        coupling_agent = process["coupling_agent"]
+        volume_per_well = process["volume_per_well_header"]
 
         # CSV file data
         row_csv = input_dict["row_csv"]

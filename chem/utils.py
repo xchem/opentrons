@@ -111,14 +111,16 @@ class BuildProtocol(object):
         raise NotImplementedError
 
     def conv_to_var(self, variable, variable_name):
-
-        try:
-            variable = float(variable)
-        except ValueError:
-            pass
-        except TypeError:
-            pass
-
+        if type(variable) == list:
+            try:
+                variable = [float(x) for x in variable]
+            except ValueError:
+                pass
+        else:
+            try:
+                variable = float(variable)
+            except ValueError:
+                pass
         if type(variable) == str:
             self.data += variable_name + " = '" + str(variable) + "'\n"
         else:

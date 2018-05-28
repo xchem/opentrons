@@ -2,6 +2,24 @@ name: "acylation"
 row_csv: "/Users/abradley/opentrons/Crude_template/Acylation/SM_AcCl.csv"
 col_csv: "/Users/abradley/opentrons/Crude_template/Acylation/SM_Amine.csv"
 trough_csv: "/Users/abradley/opentrons/Crude_template/Acylation/Others.csv"
+general_headers:
+  id_header: "CPD ID"
+  location_header: "Location"
+volume_headers:
+  volume_per_well_header: "Volume per well (ul)"
+  volume_stock_header: "Volume to dispense (exp) at 0.8M"
+  volume_col_header: "AM volume per reaction at 0.8M"
+  volume_row_header: "AC volume per reaction at 0.8M"
+  volume_screen_header: "Volume to take out Screen"
+  volume_QC_header: "Volume to take out QC"
+general_reagents:
+  wup_solvent: "DCM"
+  base: "TEA"
+  solvent_QC: "MeCN"
+  aqueous: "Aqueous"
+  reaction_mixture: "Reaction mixture"
+  dmso: "d6-DMSO"
+  solvent: "Solvent"
 processes:
   0:
     stock_solution:

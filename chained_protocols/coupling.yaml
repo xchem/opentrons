@@ -1,25 +1,16 @@
 name: "coupling"
-row_csv: "/Users/abradley/opentrons/Crude_template/Acylation/SM_AcCl.csv"
-col_csv: "/Users/abradley/opentrons/Crude_template/Acylation/SM_Amine.csv"
-trough_csv: "/Users/abradley/opentrons/Crude_template/Acylation/Others.csv"
+inherit: "acylation.yaml"
+row_csv: "/Users/abradley/opentrons/Crude_template/Coupling/SM_AcOH.csv"
+col_csv: "/Users/abradley/opentrons/Crude_template/Coupling/SM_Amine.csv"
+trough_csv: "/Users/abradley/opentrons/Crude_template/Coupling/Others.csv"
 processes:
   0:
     stock_solution:
+      solvent: "DMA"
   1:
     base_t3p_multi:
-  2:
-    mono_dispensing:
-  3:
-    sm_transfer:
-  4:
-    reaction_qc:
-  5:
-    dma_transfer:
-  6:
-    workup:
-  7:
-    post_workup_transfer:
-  8:
-    post_workup_dmso_addition:
-  9:
-    post_workup_qc_and_transfer:
+      id_header: "CPD ID"
+      location_header: "Location"
+      base: "DIPEA"
+      coupling_agent: "T3P"
+      volume_per_well: "Volume per well (ul)"
