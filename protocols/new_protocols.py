@@ -1,4 +1,4 @@
-from chem.utils import BuildProtocol, get_number_rows
+from .utils import BuildProtocol, get_number_rows
 
 class StockSolution(BuildProtocol):
     '''Function of this protocol:
@@ -26,9 +26,9 @@ dispensing occurs.'''
         volume_stock_header = process["volume_stock_header"]
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        col_csv = input_dict["col_csv"]
-        trough_csv = input_dict["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        col_csv = input_dict["files"]["col_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         # Now define the lists
         self.list_vars = {
@@ -102,8 +102,8 @@ This protocol reads the other csv file and dispense the volume written. '''
         volume_per_well = process["volume_per_well_header"]
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        trough_csv = input_dict["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         self.trough_vars = {
             "path": trough_csv,
@@ -165,8 +165,8 @@ Acids are dispensed in rows, Amines are dispensed in columns.'''
 
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        col_csv = input_dict["col_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        col_csv = input_dict["files"]["col_csv"]
 
         self.list_vars = {
             "row_vol_list": {"file": row_csv, "header": volume_row_header},
@@ -242,9 +242,9 @@ function Screen: transfer 30 to 384PP labcyte. Starts at A14, B14.... so that yo
         reaction_mixture = process["reaction_mixture"]
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        col_csv = input_dict["col_csv"]
-        trough_csv = input_dict["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        col_csv = input_dict["files"]["col_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         self.trough_vars = {
             "path": trough_csv,
@@ -335,8 +335,8 @@ Same as before, ths pipette has no minimum
 
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        trough_csv = input_dict["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         self.trough_vars = {
             "path": trough_csv,
@@ -404,8 +404,8 @@ What is needed is the number of rows where reaction mixture needs to be taken ou
         volume_screen_header = process["volume_screen_header"]
 
         # CSV file data
-        trough_csv = input_dict["trough_csv"]
-        row_csv = input_dict["row_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
 
         self.trough_vars = {
             "path": trough_csv,
@@ -469,8 +469,8 @@ class Workup(BuildProtocol):
         volume_per_well_header = process["volume_per_well_header"]
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        trough_csv = input_dict["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         self.trough_vars = {
             "path": trough_csv,
@@ -545,8 +545,8 @@ Also,this is where studies need to be done regarding pre wetting and speed of as
         wup_solvent = process["wup_solvent"]
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        trough_csv = input_dict["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         self.trough_vars = {
             "path": trough_csv,
@@ -612,11 +612,11 @@ in d6-dmso or dmso. The amount of dmso needs to be calculated, and depends on th
 
 
         # CSV file data
-        input_dict["row_csv"]
-        input_dict["trough_csv"]
-        input_dict["col_csv"]
-        row_csv = input_dict["row_csv"]
-        trough_csv = input_dict["trough_csv"]
+        input_dict["files"]["row_csv"]
+        input_dict["files"]["trough_csv"]
+        input_dict["files"]["col_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         self.trough_vars = {
             "path": trough_csv,
@@ -682,8 +682,8 @@ class PostWorkupQCAndTransfer(BuildProtocol):
         volume_screen_header = process["volume_screen_header"]
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        trough_csv = input_dict["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         self.trough_vars = {
             "path": trough_csv,
@@ -765,8 +765,8 @@ class BaseT3PMulti(BuildProtocol):
         volume_per_well = process["volume_per_well_header"]
 
         # CSV file data
-        row_csv = input_dict["row_csv"]
-        trough_csv = input_dict["trough_csv"]
+        row_csv = input_dict["files"]["row_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
 
         self.trough_vars = {
             "path": trough_csv,

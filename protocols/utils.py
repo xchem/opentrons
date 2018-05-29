@@ -1,3 +1,5 @@
+import sys
+
 class FileHolder(object):
     def __init__(self,name="NULL",data="NULL"):
         self.name = name
@@ -20,11 +22,17 @@ class DataFrame(object):
         return self.length
 
     def __getitem__(self, value):
-        return Vector(self.dict_input[value])
+        if value in self.dict_input:
+            return Vector(self.dict_input[value])
+        else:
+            print("Column: " + value + " not found in " + self.input_file
+                             + "\nOptions are: " + str(list(self.dict_input.keys())))
+            sys.exit()
 
-    def __init__(self, dict_input, length):
+    def __init__(self, dict_input, length, input_file):
         self.dict_input = dict_input
         self.length = length
+        self.input_file = input_file
 
 #Function that reads a csv file correctly without having to import anything (issues with molport). Uses 2 classes, Vector and DataFrame
 def read_csv(input_file):
@@ -37,7 +45,7 @@ def read_csv(input_file):
         spl_line = line.rstrip().split(",")
         for i, head in enumerate(header):
             out_d[head].append(spl_line[i])
-    df = DataFrame(out_d, len(lines[1:]))
+    df = DataFrame(out_d, len(lines[1:]), input_file)
     return df
 
 
@@ -146,6 +154,9 @@ class TroughSetUp(object):
             if x == solvent:
                 solvent_location = location_list[i]
                 return solvent_location
+        else:
+            print("Solvent: " + solvent + " not found. \nOptions are: " + str(self.id_list.tolist()))
+            sys.exit()
 
 
 

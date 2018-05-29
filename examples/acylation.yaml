@@ -1,7 +1,8 @@
 name: "acylation"
-row_csv: "/Users/abradley/opentrons/Crude_template/Acylation/SM_AcCl.csv"
-col_csv: "/Users/abradley/opentrons/Crude_template/Acylation/SM_Amine.csv"
-trough_csv: "/Users/abradley/opentrons/Crude_template/Acylation/Others.csv"
+files:
+  row_csv: "acylayion/SM_AcCl.csv"
+  col_csv: "acylayion/SM_Amine.csv"
+  trough_csv: "acylayion/Others.csv"
 general_headers:
   id_header: "CPD ID"
   location_header: "Location"

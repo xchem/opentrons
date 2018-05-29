@@ -1,8 +1,9 @@
 name: "coupling"
-inherit: "acylation.yaml"
-row_csv: "/Users/abradley/opentrons/Crude_template/Coupling/SM_AcOH.csv"
-col_csv: "/Users/abradley/opentrons/Crude_template/Coupling/SM_Amine.csv"
-trough_csv: "/Users/abradley/opentrons/Crude_template/Coupling/Others.csv"
+inherit: "acation.yaml"
+files:
+  row_csv: "coupling/SM_AcOH.csv"
+  col_csv: "coupling/SM_Amine.csv"
+  trough_csv: "coupling/Others.csv"
 processes:
   0:
     stock_solution:

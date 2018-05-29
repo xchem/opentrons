@@ -1,5 +1,5 @@
-from chem.utils import get_list_from_header,FileHolder,get_smis,get_name,merge_lists,conv_to_var
-from reactions.poised_reactions import Filter
+from .utils import get_list_from_header,FileHolder,get_smis,get_name,merge_lists,conv_to_var
+from .poised_reactions import Filter
 from rdkit import Chem
 from rdkit.Chem import AllChem
 import StringIO
