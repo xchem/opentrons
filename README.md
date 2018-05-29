@@ -9,7 +9,16 @@
 
 Requirements - RDKit
 ### Install
-```#base
+```bash
 pip install xchem-ot
 xchem_ot /path/to/file.yaml
+```
+OR
+```bash
+git clone https://github.com/xchem/opentrons
+cd opentrons
+python setup.py install 
+cd examples 
+xchem_ot --yaml_path coupling.yaml
+xchem_ot --yaml_path acylation.yaml
 ```
