@@ -4,4 +4,4 @@ services:
 install:
   - docker build -t abradle/opentrons .
 script:
-  - docker run abradle/opentrons /bin/sh -c "cd /usr/local/opentrons && ot_xchem/tests/test_scripts/test_all_scripts.sh && nosetests"
+  - docker run abradle/opentrons /bin/sh -c "cd /usr/local/opentrons && xchem_ot/tests/test_scripts/test_all_scripts.sh && nosetests"

@@ -5,7 +5,7 @@ def gen_prot_dict():
     :param input_list:
     :return:
     """
-    from utils.protocols import StockSolution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,\
+    from .protocols import StockSolution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,\
         PostWorkupTransfer,Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti, PoisedReactor
     input_list = [StockSolution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,PostWorkupTransfer,
                            Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti, PoisedReactor]

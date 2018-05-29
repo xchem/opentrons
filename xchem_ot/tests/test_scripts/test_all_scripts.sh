@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-ot_xchem --yaml_path examples/errors/file_error.yaml > out.log
+xchem_ot --yaml_path examples/errors/file_error.yaml > out.log
 DIFF=$(diff out.log examples/errors/file_error.out)
 if [ "$DIFF" != "" ]
 then
     echo Difference between file_error
     exit 1
 fi
-ot_xchem --yaml_path examples/errors/header_error.yaml > out.log
+xchem_ot --yaml_path examples/errors/header_error.yaml > out.log
 DIFF=$(diff out.log examples/errors/header_error.out)
 if [ "$DIFF" != "" ]
 then
     echo Difference between header_error
     exit 1
 fi
-ot_xchem --yaml_path examples/errors/inherit_error.yaml > out.log
+xchem_ot --yaml_path examples/errors/inherit_error.yaml > out.log
 DIFF=$(diff out.log examples/errors/inherit_error.out)
 if [ "$DIFF" != "" ]
 then
@@ -21,7 +21,7 @@ then
     exit 1
 fi
 
-ot_xchem --yaml_path examples/errors/solvent_error.yaml > out.log
+xchem_ot --yaml_path examples/errors/solvent_error.yaml > out.log
 DIFF=$(diff out.log examples/errors/solvent_error.out)
 if [ "$DIFF" != "" ]
 then
@@ -29,7 +29,7 @@ then
     exit 1
 fi
 
-ot_xchem --yaml_path examples/errors/trough_error.yaml > out.log
+xchem_ot --yaml_path examples/errors/trough_error.yaml > out.log
 DIFF=$(diff out.log examples/errors/trough_error.out)
 if [ "$DIFF" != "" ]
 then

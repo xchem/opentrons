@@ -16,7 +16,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.0.11',
+    version='0.0.12',
 
     description='Library for Opentrons based parallel chemistry',
     long_description=long_description,
@@ -63,7 +63,7 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=["ot_xchem","ot_xchem.utils"],
+    packages=["xchem_ot","xchem_ot.utils"],
 
     # Alternatively, if you want to distribute just a my_module.py, uncomment
     # this:
@@ -103,7 +103,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'ot_xchem = ot_xchem.utils.parser:run_function',
+            'xchem_ot = xchem_ot.utils.parser:run_function',
         ],
     },
 )
