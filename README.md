@@ -7,6 +7,7 @@
 
 ## Usage
 
+Requirements - RDKit
 ### Install
 ```#base
 python setup.py install
