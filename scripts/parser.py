@@ -1,4 +1,4 @@
-from utils.parser import run_parser
+from ot_xchem.utils.parser import run_parser
 import sys
 
 
