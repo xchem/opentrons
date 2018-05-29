@@ -7,7 +7,7 @@
 
 ## Usage
 
-###Install
+### Install
 ```#base
 python setup.py install
 opentrons_parser /path/to/file.yaml
