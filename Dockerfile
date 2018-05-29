@@ -1,6 +1,5 @@
-FROM python:3.6.4-jessie
+FROM informaticsmatters/rdkit-python-debian:Release_2018_03_01
 ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 ADD . /usr/local/opentrons
-ENV CONTAINERS_DIR /usr/local/opentrons/containers 
 RUN pip install /usr/local/opentrons
