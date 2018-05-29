@@ -103,7 +103,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'parser=scripts.parser:main',
+            'opentrons_parser=scripts.parser:main',
         ],
     },
 )

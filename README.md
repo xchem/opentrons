@@ -4,3 +4,11 @@
 [![License](http://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://github.com/xchem/opentrons/blob/master/LICENSE.txt)
 
 # Opentrons repo for parallel chemistry reactions
+
+## Usage
+
+###Install
+```#base
+python setup.py install
+opentrons_parser /path/to/file.yaml
+```
