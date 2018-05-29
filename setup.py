@@ -10,14 +10,13 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
-print((find_packages(exclude=['contrib', 'docs', 'tests'])))
 setup(
     name='xchem_ot',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.0.2-beta1',
+    version='0.0.11',
 
     description='Library for Opentrons based parallel chemistry',
     long_description=long_description,
@@ -64,7 +63,7 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    packages=["ot_xchem","ot_xchem.utils"],
 
     # Alternatively, if you want to distribute just a my_module.py, uncomment
     # this:
@@ -96,6 +95,7 @@ setup(
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files # noqa
     # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
 #    data_files=[('my_data', ['data/data_file'])],
+    include_package_data=True,
 
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow
@@ -103,7 +103,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'opentrons_parser=scripts.parser:main',
+            'ot_xchem = ot_xchem.utils.parser:run_function',
         ],
     },
 )

@@ -80,3 +80,15 @@ def run_parser(input_yaml_file):
             out_f = open(os.path.join(output_dir,f.name),"w")
             out_f.write(f.data)
             out_f.close()
+
+def run_function():
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Read in a YAML and make some Opentrons protocols')
+    parser.add_argument('--yaml_path', dest='yaml_path',
+                        help='The path of the YAML file to use to build the protocols')
+    args = parser.parse_args()
+    if args.yaml_path:
+        run_parser(args.yaml_path)
+    else:
+        parser.print_help()
