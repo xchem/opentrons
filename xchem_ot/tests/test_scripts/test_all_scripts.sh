@@ -13,6 +13,7 @@ then
     echo Difference between header_error
     exit 1
 fi
+rm -r acylation_*
 xchem_ot --yaml_path examples/errors/inherit_error.yaml > out.log
 DIFF=$(diff out.log examples/errors/inherit_error.out)
 if [ "$DIFF" != "" ]
@@ -20,7 +21,6 @@ then
     echo Difference between inherit_error
     exit 1
 fi
-
 xchem_ot --yaml_path examples/errors/solvent_error.yaml > out.log
 DIFF=$(diff out.log examples/errors/solvent_error.out)
 if [ "$DIFF" != "" ]
@@ -28,7 +28,7 @@ then
     echo Difference between solvent_error
     exit 1
 fi
-
+rm -r acylation_*
 xchem_ot --yaml_path examples/errors/trough_error.yaml > out.log
 DIFF=$(diff out.log examples/errors/trough_error.out)
 if [ "$DIFF" != "" ]

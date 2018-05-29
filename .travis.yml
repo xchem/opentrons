@@ -2,6 +2,6 @@ sudo: required
 services:
   - docker
 install:
-  - docker build -t abradle/opentrons .
+  - docker build -t xchem/opentrons .
 script:
-  - docker run abradle/opentrons /bin/sh -c "cd /usr/local/opentrons && xchem_ot/tests/test_scripts/test_all_scripts.sh && nosetests"
+  - docker run xchem/opentrons /bin/sh -c "cd /usr/local/opentrons && xchem_ot/tests/test_scripts/test_all_scripts.sh && nosetests"

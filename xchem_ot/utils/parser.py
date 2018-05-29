@@ -11,7 +11,7 @@ def gen_prot_dict():
                            Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti, PoisedReactor]
     out_dict = {}
     for protocol in input_list:
-        out_dict[protocol.__str__(None)] = protocol
+        out_dict[str(protocol())] = protocol
     return out_dict
 
 

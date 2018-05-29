@@ -1,4 +1,5 @@
 from .utils import BuildProtocol, get_number_rows
+from builtins import super
 
 class StockSolution(BuildProtocol):
     '''Function of this protocol:
@@ -12,8 +13,10 @@ dispensing occurs.'''
     def __str__(self):
         return "stock_solution"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process == None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -88,8 +91,10 @@ This protocol reads the other csv file and dispense the volume written. '''
     def __str__(self):
         return "multi_base"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -152,8 +157,10 @@ Acids are dispensed in rows, Amines are dispensed in columns.'''
     def __str__(self):
         return "mono_dispensing"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -225,8 +232,10 @@ function Screen: transfer 30 to 384PP labcyte. Starts at A14, B14.... so that yo
     def __str__(self):
         return "sm_transfer"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -318,8 +327,10 @@ Same as before, ths pipette has no minimum
     def __str__(self):
         return "reaction_qc"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -392,8 +403,10 @@ What is needed is the number of rows where reaction mixture needs to be taken ou
     def __str__(self):
         return "dma_transfer"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -454,8 +467,10 @@ class Workup(BuildProtocol):
     def __str__(self):
         return "workup"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -530,8 +545,10 @@ Also,this is where studies need to be done regarding pre wetting and speed of as
     def __str__(self):
         return "post_workup_transfer"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -598,8 +615,10 @@ in d6-dmso or dmso. The amount of dmso needs to be calculated, and depends on th
     def __str__(self):
         return "post_workup_dmso_addition"
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -664,8 +683,10 @@ class PostWorkupQCAndTransfer(BuildProtocol):
     Dispensing for screening plate starts at A1, using the 300 multichannel'''
 
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -750,8 +771,10 @@ class BaseT3PMulti(BuildProtocol):
     It is possible to have a break between aspiration  and movement, but experimentation muct be done first to check
     if slowest speed is already enough. In brief, needs optimising'''
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name
@@ -817,8 +840,10 @@ robot.home()
 class PoisedReactor(BuildProtocol):
 
 
-    def __init__(self,process,input_dict,name,index):
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
+        if process is None:
+            return
         self.process = process
         self.input_dict = input_dict
         self.name = name

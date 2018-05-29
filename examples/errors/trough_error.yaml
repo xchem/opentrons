@@ -1,8 +1,8 @@
 name: "acylation"
 files:
-  row_csv: "acylayion/SM_AcCl.csv"
-  col_csv: "acylayion/SM_Amine.csv"
-  trough_csv: "acylayion/Others.csv"
+  row_csv: "examples/acylation/SM_AcCl.csv"
+  col_csv: "examples/acylation/SM_Amine.csv"
+  trough_csv: "examples/acylation/Others.csv"
 general_headers:
   id_header: "CPD ID"
   location_header: "Locati"

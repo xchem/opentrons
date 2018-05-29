@@ -1,9 +1,9 @@
 name: "coupling"
 inherit: "acation.yaml"
 files:
-  row_csv: "coupling/SM_AcOH.csv"
-  col_csv: "coupling/SM_Amine.csv"
-  trough_csv: "coupling/Others.csv"
+  row_csv: "examples/coupling/SM_AcOH.csv"
+  col_csv: "examples/coupling/SM_Amine.csv"
+  trough_csv: "examples/coupling/Others.csv"
 processes:
   0:
     stock_solution:
