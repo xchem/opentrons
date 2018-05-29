@@ -1,8 +1,8 @@
 name: "acylation"
 files:
-  row_csv: "acylayion/SM_AcCl.csv"
-  col_csv: "acylayion/SM_Amine.csv"
-  trough_csv: "acylayion/Others.csv"
+  row_csv: "acylation/SM_AcCl.csv"
+  col_csv: "acylation/SM_Amine.csv"
+  trough_csv: "acylation/Others.csv"
 general_headers:
   id_header: "CPD ID"
   location_header: "Location"
@@ -44,3 +44,5 @@ processes:
     post_workup_qc_and_transfer:
   10:
     poised_reaction:
+      smiles_col_header: "Smiles"
+      reaction: 'Amides'

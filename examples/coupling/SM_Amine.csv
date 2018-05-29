@@ -1,5 +1,4 @@
-Location,Name,Smiles,IUPAC name,MW,Reaction Scale (mmol),Eq,amount per reaction (mg),Volume to dispense (theory) at 0.8M,Min weight,Exp weight,Volume to dispense (exp) at 0.8M,AC volume per reaction at 0.8M,Volume QC,Volume Screen
-Location,Name,Smiles,IUPAC name,MW,Reaction Scale (mmol),Eq,amount per reaction (mg),Volume to dispense (theory) at 0.8M,Min weight,Exp weight,Volume to dispense (exp) at 0.8M,AC volume per reaction at 0.8M,Barcode rack,Barcode vial
+Location,Name,Smiles,IUPAC name,MW,Reaction Scale (mmol),Eq,amount per reaction (mg),Volume to dispense (theory) at 0.8M,Min weight,Exp weight,Volume to dispense (exp) at 0.8M,AM volume per reaction at 0.8M,Volume QC,Volume Screen
 C1,AM2,FC1=CC=CC=C1N,2-fluoroaniline,111.1194032,0.07,1,7.778358224,1750,155.5671645,230.9,2597.431157,90,SA00544825,FB00282699
 C2,AM3,NC1=CN=CC=C1,pyridin-3-amine,94.117,0.07,1,6.58819,1750,131.7638,176.1,2338.844205,90,SA00544825,FB00282366
 C3,AM6,NC1=NC=CC=N1,pyrimidin-2-amine,95.105,0.07,1,6.65735,875,66.5735,103.9,1365.59592,90,SA00544825,FB00282749

@@ -74,6 +74,10 @@ def merge_lists(list_one,list_two):
 def get_name(name,index,subindex):
     return "_".join([str(index),chr(subindex+97),name])+".py"
 
+def get_position(row_index,col_index):
+    return chr(row_index+65)+str(col_index+1)
+
+
 
 class BuildProtocol(object):
 
@@ -154,25 +158,23 @@ class BuildProtocol(object):
 
     def do_reaction(self):
         from .reactions import Filter
-        import StringIO
         from rdkit import Chem
-        from rdkit.Chem import AllChem
         reactions = Filter()
-        row_smis = get_smis(open(self.row_csv_file).read(), self.smiles_col_header)
-        col_smis = get_smis(open(self.col_csv_file).read(), self.smiles_col_header)
-        output = StringIO.StringIO()
-        writer = Chem.SmilesWriter(output)
+        row_smis = read_csv(self.row_csv_file)[self.smiles_col_header].tolist()
+        col_smis = read_csv(self.col_csv_file)[self.smiles_col_header].tolist()
+        output_mols = []
         counter = 0
-        for row_s in row_smis:
-            print(row_s)
-            row_mol = AllChem.AddHs(Chem.MolFromSmiles(row_s))
-            for col_s in col_smis:
-                print(col_s)
-                col_mol = AllChem.AddHs(Chem.MolFromSmiles(col_s))
-                counter = reactions.perform_reaction(col_mol, self.reaction, row_mol, writer, counter)
-        self.smiles_product = output.getvalue()
-        self.files.append(FileHolder("products.smi", self.smiles_product))
+        rows = [["ReactantOne","ReactantTwo","Product","Row","Column","Well"]]
+        for row_index,row_s in enumerate(row_smis):
+            row_mol = Chem.MolFromSmiles(row_s)
+            for col_index,col_s in enumerate(col_smis):
+                col_mol = Chem.MolFromSmiles(col_s)
+                counter,output_mols = reactions.perform_reaction(col_mol, self.reaction, row_mol, counter)
+                for mol in output_mols:
+                    rows.append([row_s,col_s,Chem.MolToSmiles(mol),str(row_index),
+                                 str(col_index),get_position(row_index,col_index)])
 
+        self.files.append(FileHolder("products.smi","\n".join([",".join(x) for x in rows])))
 
 class TroughSetUp(object):
 

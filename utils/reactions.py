@@ -43,10 +43,7 @@ class Filter(object):
         # ++ means
         # THEN
 
-        self.poised_reactions = {'Amides': ['[Cl,Br,I][C:2]=[O:3].[#7:1]>>[#7:1][C:2]=[O:3]',
-                    '[OH1][C:2]=[O:3].[#7:1]>>[#7:1][C:2]=[O:3]',
-                    '[NH2:1].Cl[C:2]=[O:3]>>[#7:1][C:2]=[O:3]',
-                    '[NH1:1].Cl[C:2]=[O:3]>>[#7:1][C:2]=[O:3]'],
+        self.poised_reactions = {'Amides': ['[Cl,Br,I,OH][C:2]=[O:3].[N:1]>>[N:1][C:2]=[O:3]'],
                                  'alkyne_azides': [
                                      '[H:1][C:2]#[C:3].[N-:4]=[N+:5]=[N:6][c:7]>>[H:1][C:2]1=[C:3][N:4]=[N:5]-[N:6]1[c:7]',
                                  '[N-:4]=[N+:5]=[N:6][c:7].[H:1][C:2]#[C:3]>>[H:1][C:2]1=[C:3][N:4]=[N:5]-[N:6]1[c:7]'],
@@ -184,6 +181,7 @@ class Filter(object):
         for react_seq in react_seqs:
             rxn = react_seq[0]
             products.extend(rxn.RunReactants((input_molecule, reactant_mol,)))
+            products.extend(rxn.RunReactants((reactant_mol, input_molecule,)))
             for i in range(1,len(react_seq)):
                 rxn = react_seq[i]
                 curr_prods = products
@@ -192,7 +190,7 @@ class Filter(object):
                     products.extend(rxn.RunReactants(p,))
         return products
 
-    def perform_reaction(self, input_molecule, reaction_name, reactant_mol, writer,i):
+    def perform_reaction(self, input_molecule, reaction_name, reactant_mol, i):
         """Take an input molecule and a library of reactants
         React - and form the products.
         :param input_molecule: the input molecule to be reacted
@@ -200,6 +198,7 @@ class Filter(object):
         :param reactant_lib: an iterable of molecules to react
         :return:
         """
+        output_mols = []
         if input_molecule.HasProp('uuid'):
             mol_uuid = input_molecule.GetProp('uuid')
         else:
@@ -216,8 +215,8 @@ class Filter(object):
                 product.SetProp("source_uuid", mol_uuid)
             if reactant_uuid:
                 product.SetProp("reactant_uuid", reactant_uuid)
-            writer.write(product)
-        return i
+            output_mols.append(product)
+        return i,output_mols
 
     def get_subs(self,mol,reaction_name):
         """

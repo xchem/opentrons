@@ -1,6 +1,7 @@
 CPD ID,IUPAC Name,Smiles,Rack Type,Location,MW (g.mol-1),Density,Reaction Scale (mmol),Equivalent,Quant Reagent (mmol),Volume per well (ul),nb reaction per plate,Volume needed (mL),Volume to take out QC,Volume to take out Screen
 DIPEA,Diisopropylethylamine,CCN(CC)CC,Trough,A5,129.24,0.742,0.07,2.5,0.175,30.48113208,80,2438.490566,,
 DMA,dimethylacetamide,CC(N(C)C)=O,Solvent_Trough,A1,,,,,,,,,,
+MeCN,acetonitrile,CC#N,Solvent_Trough,A10,,,,,,100,,,,
 MeOH,methanol,CO,Solvent_Trough,A8,,,,,,100,,,,
 DCM,dichloromethane,ClCCl,Solvent_Trough,A2,,,,,,280,,,,
 Aqueous,Water,,Solvent_Trough,A5,,,,,,280,,,,

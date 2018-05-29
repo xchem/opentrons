@@ -829,8 +829,8 @@ class PoisedReactor(BuildProtocol):
         self.reaction = process["reaction"]
 
         # CSV file data
-        self.row_csv = input_dict["files"]["row_csv"]
-        self.col_csv = input_dict["files"]["col_csv"]
+        self.row_csv_file = input_dict["files"]["row_csv"]
+        self.col_csv_file = input_dict["files"]["col_csv"]
 
 
     def __str__(self):
