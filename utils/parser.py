@@ -1,21 +1,13 @@
 import yaml,os,sys,datetime
 
-
-
 def gen_prot_dict():
     """
-
     :param input_list:
     :return:
     """
-    from protocols.new_protocols import StockSolution, \
-        MultiBase, MonoDispensing, \
-        SMTransfer, \
-        ReactionQC, \
-        DMATransfer, \
-        PostWorkupDMSOAddition, PostWorkupQCAndTransfer, PostWorkupTransfer, Workup, BaseT3PMulti
+    from utils.protocols import *
     input_list = [StockSolution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,PostWorkupTransfer,
-                           Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti]
+                           Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti, PoisedReactor]
     out_dict = {}
     for protocol in input_list:
         out_dict[protocol.__str__(None)] = protocol
@@ -62,9 +54,9 @@ def check_files(input_dict):
             print("File not found: " + file_path + "\nWith name: " + file_name)
             sys.exit()
 
-if __name__ == "__main__":
+def run_parser(input_yaml_file):
     makefiles = gen_prot_dict()
-    input_dict = open_dict(sys.argv[1])
+    input_dict = open_dict(input_yaml_file)
     check_files(input_dict)
     processes = input_dict["processes"]
     if "name" in input_dict:

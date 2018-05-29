@@ -1,0 +1,8 @@
+CPD ID,IUPAC Name,Smiles,Rack Type,Location,MW (g.mol-1),Density,Reaction Scale (mmol),Equivalent,Quant Reagent (mmol),Volume per well (ul),nb reaction per plate,Volume needed (mL),Volume to take out QC,Volume to take out Screen
+TEA,Triethylamine,CCN(CC)CC,Trough,A4,101.19,0.726,0.07,2.5,0.175,24.39152893,80,1951.322314,,
+Solvent,dimethylacetamide,CC(N(C)C)=O,Solvent_Trough,A2,,,,,,,,,,
+MeCN,acetonitrile,CC#N,Solvent_Trough,A5,,,,,,100,,,,
+DCM,dichloromethane,ClCCl,Solvent_Trough,A8,,,,,,300,,,,
+Aqueous,Ammonium chloride -  water 1:1,,Solvent_Trough,A11,,,,,,300,,,,
+d6-DMSO,,,Trough,A10,,,,,,108,,,,
+Reaction mixture,crude,,reaction rack,D1,,,,,,280,,,20,30

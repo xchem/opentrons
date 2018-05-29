@@ -1,0 +1,5 @@
+Location,Amine,Amine Smiles,Amine Name,MW Amine,Reaction Scale (mmol),Eq Amine,Amine amount p reaction (mg),Volume to dispense (theory) at 0.8M,weight min to dispense,Exp weight,Volume to dispense (exp) at 0.8M,AM volume per reaction at 0.8M,Volume QC,Volume Screen,Barcode rack,Barcode vial
+A1,AM1,NC1=NOC=C1,isoxazol-3-amine,84.078,0.07,1,5.88546,2625,176.5638,199.5,2965.995861,87.5,20,30,SA00544825,FB00282667
+A2,AM2,FC1=CC=CC=C1N,2-fluoroaniline,111.1194032,0.07,1,7.778358224,875,77.78358224,136.4,1534.385491,87.5,20,30,SA00544825,FB00282682
+A3,AM3,NC1=CN=CC=C1,pyridin-3-amine,94.117,0.07,1,6.58819,2625,197.6457,256.3,3404.007778,87.5,20,30,SA00544825,FB00282717
+A4,AM6,NC1=NC=CC=N1,pyrimidin-2-amine,95.105,0.07,1,6.65735,875,66.5735,82.9,1089.585195,87.5,20,30,SA00544825,FB00282880

@@ -42,3 +42,5 @@ processes:
     post_workup_dmso_addition:
   9:
     post_workup_qc_and_transfer:
+  10:
+    poised_reaction:

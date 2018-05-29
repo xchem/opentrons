@@ -36,6 +36,11 @@ class DataFrame(object):
 
 #Function that reads a csv file correctly without having to import anything (issues with molport). Uses 2 classes, Vector and DataFrame
 def read_csv(input_file):
+    """
+    MERGE INTO DATAFRAME
+    :param input_file:
+    :return:
+    """
     lines = open(input_file).readlines()
     header = lines[0].rstrip().split(",")
     out_d = {}
@@ -80,6 +85,7 @@ class BuildProtocol(object):
         self.subindex = 0
 
 
+
     def get_list_from_header(self, csv_file, header):
         return read_csv(csv_file)[header].tolist()
 
@@ -109,6 +115,7 @@ class BuildProtocol(object):
             self.conv_to_var(self.single_vars[single_var], single_var)
 
 
+
     def do_imports(self):
         return "from opentrons import robot, containers, instruments"
 
@@ -135,11 +142,36 @@ class BuildProtocol(object):
             self.data += variable_name + " = " + str(variable) + "\n"
 
     def write_protocol(self):
+        """
+        Write out the protocol
+        :return: None
+        """
         self.data = self.do_imports()
         self.data += self.do_setup()
         self.do_variables()
         self.data += self.do_protocol()
         self.files.append(FileHolder(get_name(self.name, self.index, self.subindex), self.data))
+
+    def do_reaction(self):
+        from .reactions import Filter
+        import StringIO
+        from rdkit import Chem
+        from rdkit.Chem import AllChem
+        reactions = Filter()
+        row_smis = get_smis(open(self.row_csv_file).read(), self.smiles_col_header)
+        col_smis = get_smis(open(self.col_csv_file).read(), self.smiles_col_header)
+        output = StringIO.StringIO()
+        writer = Chem.SmilesWriter(output)
+        counter = 0
+        for row_s in row_smis:
+            print(row_s)
+            row_mol = AllChem.AddHs(Chem.MolFromSmiles(row_s))
+            for col_s in col_smis:
+                print(col_s)
+                col_mol = AllChem.AddHs(Chem.MolFromSmiles(col_s))
+                counter = reactions.perform_reaction(col_mol, self.reaction, row_mol, writer, counter)
+        self.smiles_product = output.getvalue()
+        self.files.append(FileHolder("products.smi", self.smiles_product))
 
 
 class TroughSetUp(object):
@@ -158,7 +190,10 @@ class TroughSetUp(object):
             print("Solvent: " + solvent + " not found. \nOptions are: " + str(self.id_list.tolist()))
             sys.exit()
 
-
-
 def get_number_rows(csv_file):
+    """
+    DEPRECATE!!!
+    :param csv_file:
+    :return:
+    """
     return len(read_csv(csv_file))

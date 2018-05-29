@@ -1,0 +1,5 @@
+Location,Name,Smiles,IUPAC name,MW,Reaction Scale (mmol),Eq,amount per reaction (mg),Volume to dispense (theory) at 0.8M,Min weight,Exp weight,Volume to dispense (exp) at 0.8M,AC volume per reaction at 0.8M,Volume QC,Volume Screen,Barcode rack,Barcode vial
+A1,AC1,O=C(Cl)CC1=CC(OC)=CC=C1,2-(3-methoxyphenyl)acetyl chloride,184.619,0.07,1,13.5694965,1837.5,271.38993,303.4,2054.230605,87.5,20,30,SA00544824,FB00283471
+A2,AC2,O=C(Cl)CC1=CC=C(OC)C=C1,2-(4-methoxyphenyl)acetyl chloride,184.619,0.07,1,13.5694965,2756.25,407.084895,487.6,3301.393681,87.5,20,30,SA00544824,FB00283101
+A3,AC10,O=C(Cl)C1=CC=CC=C1,benzoyl chloride,140.566,0.07,1,10.331601,1837.5,206.63202,268.5,2387.668426,87.5,20,30,SA00544824,FB00283316
+A4,AC11,O=C(Cl)C1=CC=C(N(C)C)C=C1,4-(dimethylamino)benzoyl chloride,183.635,0.07,1,13.4971725,918.75,134.971725,154.2,1049.637,87.5,20,30,SA00544824,FB00282743

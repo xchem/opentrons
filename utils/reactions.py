@@ -179,7 +179,6 @@ class Filter(object):
         product.SetProp("SOURCE",reaction_delimiter.join(provenances)+reaction_delimiter+current_reaction)
 
 
-
     def run_reaction(self,input_molecule,reactant_mol, react_seqs):
         products = []
         for react_seq in react_seqs:

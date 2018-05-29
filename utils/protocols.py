@@ -813,3 +813,35 @@ p300_multi.distribute(volume_coupling_agent, source_trough12row.wells(source_cou
                               [x.top() for x in reaction_rack.rows(0, to=number_rows)])
 robot.home()
 '''
+
+class PoisedReactor(BuildProtocol):
+
+
+    def __init__(self,process,input_dict,name,index):
+        super().__init__()
+        self.process = process
+        self.input_dict = input_dict
+        self.name = name
+        self.index = index
+
+        # Define the headers
+        self.smiles_col_header = process["smiles_col_header"]
+        self.reaction = process["reaction"]
+
+        # CSV file data
+        self.row_csv = input_dict["files"]["row_csv"]
+        self.col_csv = input_dict["files"]["col_csv"]
+
+
+    def __str__(self):
+        return "poised_reaction"
+
+    def write_protocol(self):
+        """
+        Write out the products based on reaction smarts
+        :param process:
+        :param name:
+        :param index:
+        :return:
+        """
+        self.do_reaction()
