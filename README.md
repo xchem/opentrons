@@ -10,6 +10,6 @@
 Requirements - RDKit
 ### Install
 ```#base
-python setup.py install
-opentrons_parser /path/to/file.yaml
+pip install xchem-ot
+xchem_ot /path/to/file.yaml
 ```
