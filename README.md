@@ -19,6 +19,7 @@ git clone https://github.com/xchem/opentrons
 cd opentrons
 python setup.py install 
 cd examples 
-xchem_ot --yaml_path coupling.yaml
 xchem_ot --yaml_path acylation.yaml
+# one with inheritance
+xchem_ot --yaml_path coupling.yaml
 ```
