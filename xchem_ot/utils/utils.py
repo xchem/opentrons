@@ -77,6 +77,14 @@ def get_name(name,index,subindex):
 def get_position(row_index,col_index):
     return chr(row_index+65)+str(col_index+1)
 
+def conv_int_or_float(input_str):
+    if type(input_str) != str:
+        return input_str
+    if "." in input_str:
+        return float(input_str)
+    else:
+        return int(input_str)
+
 
 
 class BuildProtocol(object):
@@ -132,12 +140,12 @@ class BuildProtocol(object):
     def conv_to_var(self, variable, variable_name):
         if type(variable) == list:
             try:
-                variable = [float(x) for x in variable]
+                variable = [conv_int_or_float(x) for x in variable]
             except ValueError:
                 pass
         else:
             try:
-                variable = float(variable)
+                variable = conv_int_or_float(variable)
             except ValueError:
                 pass
         if type(variable) == str:
