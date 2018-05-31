@@ -127,7 +127,7 @@ robot.head_speed(x=18000, y=18000, z=4000, a=700, b=700)
 # Deck setup
 tiprack_300 = containers.load("tiprack-300ul", "D3")
 source_trough12row = containers.load('trough-12row', "E2")
-reaction_rack = containers.load("StarLab_96_tall", "D1")
+reaction_rack = containers.load("StarLab_96_tall", "E1")
 trash = containers.load("point", 'C3')
 
 # Pipettes SetUp
@@ -144,7 +144,7 @@ p300_multi = instruments.Pipette(
 """
     def do_protocol(self):
         return """
-p300_multi.distribute(volume_to_dispense, source_trough12row.wells(source_location), [x.top() for x in reaction_rack.rows(0,to=number_rows)])
+p300_multi.distribute(volume_to_dispense, source_trough12row.wells(solvent_location), [x.top(-5) for x in reaction_rack.rows(0,to=number_rows)])
 robot.home()
 """
 
@@ -193,7 +193,7 @@ robot.head_speed(x=17000,  y=17000,  z=5000, a=700, b=700)
 tiprack_1000 = containers.load("tiprack-1000ul-H", "B3")
 source_row = containers.load("FluidX_24_5ml", "A1", "acid")
 source_col = containers.load("FluidX_24_5ml", "A2", "amine")
-reaction_rack = containers.load("StarLab_96_tall", "D1")
+reaction_rack = containers.load("StarLab_96_tall", "E1")
 trash = containers.load("point", "C3")
 
 #Pipettes SetUp
@@ -279,8 +279,8 @@ tiprack_1000 = containers.load("tiprack-1000ul-H", "B3")
 source_row = containers.load("FluidX_24_5ml", "A1", "acid")
 source_col = containers.load("FluidX_24_5ml", "A2", "amine")
 source_trough4row = containers.load("trough-12row", "C2")
-destination_QC = containers.load("96-PCR-flat", "B1", "QC")
-destination_screen = containers.load("Labcyte_384PP", "C1", "384_Screen")
+destination_QC = containers.load("96-PCR-flat", "C1", "QC")
+destination_screen = containers.load("Labcyte_384PP", "D1", "384_Screen")
 trash = containers.load("point", "C3")
 
 #Pipettes SetUp
@@ -300,23 +300,26 @@ p1000 = instruments.Pipette(
         return """
 # Do protocol
 n=0
+m=208
 for i, x in enumerate(row_loc_list):
     source_location = x
-    p1000.transfer(volume_to_dispense, source_row.wells(source_location), destination_QC.wells(n).bottom(2), blow_out=True)
+    p1000.pick_up_tip()
+    p1000.transfer(volume_to_dispense, source_row.wells(source_location), destination_QC.wells(n).bottom(1), blow_out=True, new_tip = 'never')
+    p1000.transfer(volume_to_take_out, source_row.wells(source_location), destination_screen.wells(m).bottom(1), blow_out=True, new_tip = 'never')
+    p1000.drop_tip()
+    m=m+1
     n=n+1
 for i, x in enumerate(col_loc_list):
     source_location = x
-    p1000.transfer(volume_to_dispense, source_col.wells(source_location), destination_QC.wells(n).bottom(2), blow_out=True)
+    p1000.pick_up_tip()
+    p1000.transfer(volume_to_dispense, source_col.wells(source_location), destination_QC.wells(n).bottom(1), blow_out=True, new_tip = 'never')
+    p1000.transfer(volume_to_take_out, source_col.wells(source_location), destination_screen.wells(m).bottom(1), blow_out=True, new_tip = 'never')
+    p1000.drop_tip()
+    m=m+1
     n=n+1
 p1000.distribute(volume_QC_solvent, source_trough4row.wells(location_QC_solvent), [x.top() for x in destination_QC.wells(0, to=n-1)])
-n=208
-for i, source_location in enumerate(row_loc_list):
-    p1000.transfer(volume_to_take_out, source_row.wells(source_location), destination_screen.wells(n).bottom(2))
-    n=n+1
-for i, source_location in enumerate(col_loc_list):
-    p1000.transfer(volume_to_take_out, source_col.wells(source_location), destination_screen.wells(n).bottom(2))
-    n=n+1
-    """
+robot.home()
+        """
 
 class ReactionQC(BuildProtocol):
     '''Function of this protocol: QC after overnight reaction. Similar to SM QC in terms of volumes, except transfer is using a multichannel 300.
@@ -358,7 +361,7 @@ Same as before, ths pipette has no minimum
         }
 
         self.single_vars = {
-            "number_rows": get_number_rows(row_csv)
+            "number_rows": get_number_rows(row_csv) - 1
         }
 
     def do_setup(self):
@@ -369,8 +372,8 @@ robot.head_speed(x=18000,  y=18000,  z=5000, a=700, b=700)
 tiprack_300 = containers.load("tiprack-300ul", "D3")
 tiprack_300_2 = containers.load("tiprack-300ul", "E2")
 source_trough4row = containers.load("trough-12row", "C2")
-reaction_rack = containers.load("StarLab_96_tall", "D1")
-destination_QC = containers.load("96-PCR-flat", "B1", "QC")
+reaction_rack = containers.load("StarLab_96_tall", "E1")
+destination_QC = containers.load("96-PCR-flat", "C1", "QC")
 trash = containers.load("point", "C3")
 
 #Pipettes SetUp
@@ -386,11 +389,12 @@ p300_multi  = instruments.Pipette(
 """
     def do_protocol(self):
         return """
-source_location = [well.bottom(2) for well in reaction_rack.rows(0, to=number_rows)]
-destination_location = [well.bottom(2) for well in destination_QC.rows(0, to=number_rows)]
+source_location = [well.bottom(1) for well in reaction_rack.rows(0, to=number_rows)]
+destination_location = [well.bottom(1) for well in destination_QC.rows(0, to=number_rows)]
 destination_QC_solvent = [x.top() for x in destination_QC.rows(0,to=number_rows)]
-p300_multi.transfer(volume_to_dispense, source_location, destination_location, blow_out=True, new_tip = 'always')
 p300_multi.distribute(volume_QC_solvent, source_trough4row.wells(location_QC_solvent), destination_QC_solvent)
+p300_multi.transfer(volume_to_dispense, source_location, destination_location, blow_out=True, new_tip = 'always')
+robot.home()
         """
 
 
@@ -427,7 +431,7 @@ What is needed is the number of rows where reaction mixture needs to be taken ou
         }
 
         self.single_vars = {
-            "number_rows": get_number_rows(row_csv)
+            "number_rows": get_number_rows(row_csv) - 1
         }
 
     def do_setup(self):
@@ -435,8 +439,8 @@ What is needed is the number of rows where reaction mixture needs to be taken ou
 robot.head_speed(x=16000,  y=16000,  z=4000, a=700, b=700)
 #Deck setup
 tiprack_300 = containers.load("tiprack-300ul", "D3")
-reaction_rack = containers.load("StarLab_96_tall", "D1")
-destination_screen = containers.load("Labcyte_384PP", "C1", "384_Screen")
+reaction_rack = containers.load("StarLab_96_tall", "E1")
+destination_screen = containers.load("Labcyte_384PP", "D1", "384_Screen")
 trash = containers.load("point", "C3")
 
 #Pipettes SetUp
@@ -457,6 +461,7 @@ source_location = [well.bottom(1) for well in reaction_rack.rows(0, to=number_ro
 for row in destination_screen.rows(0, to=number_rows):
     destination_384.append(row.wells('A', length=8, step=2).bottom(1))
 p300_multi.transfer(volume_to_dispense, source_location, destination_384, blow_out=True, new_tip = 'always')
+robot.home()
 """
 
 
@@ -497,7 +502,7 @@ class Workup(BuildProtocol):
         }
 
         self.single_vars = {
-            "number_rows": get_number_rows(row_csv)
+            "number_rows": get_number_rows(row_csv) - 1
         }
 
 
@@ -508,7 +513,7 @@ robot.head_speed(x=16000,  y=16000,  z=4000, a=700, b=700)
 tiprack_300 = containers.load("tiprack-300ul", "D3")
 tiprack_300_2 = containers.load("tiprack-300ul", "E2")
 source_trough4row = containers.load("trough-12row", "C2")
-reaction_rack = containers.load("StarLab_96_tall", "D1")
+reaction_rack = containers.load("StarLab_96_tall", "E1")
 trash = containers.load("point", "C3")
 
 #Pipettes SetUp
@@ -534,7 +539,7 @@ for i in range(0, number_rows):
     p300_multi.pick_up_tip()
     p300_multi.mix(4, 300, reaction_rack.rows(i).bottom(10))
     p300_multi.drop_tip()
-
+robot.home()
 """
 
 class PostWorkupTransfer(BuildProtocol):
@@ -573,7 +578,7 @@ Also,this is where studies need to be done regarding pre wetting and speed of as
         }
 
         self.single_vars = {
-            "number_rows": get_number_rows(row_csv)
+            "number_rows": get_number_rows(row_csv) - 1
         }
 
 
@@ -583,8 +588,8 @@ robot.head_speed(x=18000,  y=18000,  z=5000, a=700, b=700)
 #Deck setup
 tiprack_300 = containers.load("tiprack-300ul", "D3")
 source_trough4row = containers.load("trough-12row", "C2")
-reaction_rack = containers.load("StarLab_96_tall", "D1")
-destination_wup = containers.load("96-PCR-flat", "C1","wup rack")
+reaction_rack = containers.load("StarLab_96_tall", "E1")
+destination_wup = containers.load("FluidX_96_small", "D1","pwup rack")
 trash = containers.load("point", "C3")
 
 #Pipettes SetUp
@@ -605,6 +610,7 @@ for i in range(0, number_rows+1):
     p300_multi.aspirate (300, source_trough4row.wells(source_solvent))
     p300_multi.dispense (source_trough4row.wells(source_solvent))
     p300_multi.transfer(volume_to_dispense, reaction_rack.rows(i).bottom(), destination_wup.rows(i).top(4), blow_out = True)
+robot.home()
 """
 
 class PostWorkupDMSOAddition(BuildProtocol):
@@ -645,7 +651,7 @@ in d6-dmso or dmso. The amount of dmso needs to be calculated, and depends on th
         }
 
         self.single_vars = {
-            "number_rows": get_number_rows(row_csv)
+            "number_rows": get_number_rows(row_csv) - 1
         }
 
 
@@ -656,9 +662,8 @@ robot.head_speed(x=18000,  y=18000,  z=5200, a=700, b=700)
 #Deck setup
 tiprack_300 = containers.load("tiprack-300ul", "D3")
 source_trough12row = containers.load('trough-12row', "E2")
-pwup_rack = containers.load("FluidX_96_small", "D1")
+pwup_rack = containers.load("FluidX_96_small", "E1", "pwup rack")
 trash = containers.load("point", "C3")
-
 
 #Pipettes SetUp
 p300_multi  = instruments.Pipette(
@@ -673,7 +678,7 @@ p300_multi  = instruments.Pipette(
 """
     def do_protocol(self):
         return """
-p300_multi.distribute(volume_to_dispense, source_trough12row.wells(source_location), [x.top(5) for x in pwup_rack.rows(0,to=number_rows)])
+p300_multi.distribute(volume_to_dispense, source_trough12row.wells(source_location), [x.top(1) for x in pwup_rack.rows(0,to=number_rows)])
 robot.home()
 """
 
@@ -712,11 +717,11 @@ class PostWorkupQCAndTransfer(BuildProtocol):
             "volume_QC": {"col_header": volume_QC_header, "solvent_name": reaction_mixture},
             "volume_screen": {"col_header": volume_screen_header, "solvent_name": reaction_mixture},
             "location_QC_solvent": {"col_header": location_header, "solvent_name": solvent_QC},
-            "volume_screen": {"col_header": volume_per_well_header, "solvent_name": solvent_QC},
+            "volume_QC_solvent": {"col_header": volume_per_well_header, "solvent_name": solvent_QC},
         }
 
         self.single_vars = {
-            "number_rows": get_number_rows(row_csv)
+            "number_rows": get_number_rows(row_csv) - 1
         }
 
     def __str__(self):
@@ -729,9 +734,9 @@ robot.head_speed(x=17000,  y=17000,  z=5000, a=700, b=700)
 tiprack_300 = containers.load("tiprack-300ul", "D3")
 tiprack_300_2 = containers.load("tiprack-300ul", "E2")
 source_trough4row = containers.load("trough-12row", "C2")
-pwup_rack = containers.load("96-PCR-flat", "D1")
-destination_QC = containers.load("96-PCR-flat", "B1", "QC")
-destination_screen = containers.load("Labcyte_384PP", "C1", "384_Screen")
+pwup_rack = containers.load("FluidX_96_small", "E1", "pwup rack")
+destination_QC = containers.load("96-PCR-flat", "C1", "QC")
+destination_screen = containers.load("Labcyte_384PP", "D1", "384_Screen")
 trash = containers.load("point", "C3")
 
 #Pipettes SetUp
@@ -756,7 +761,8 @@ for i in range (0, number_rows+1):
     p300_multi.transfer(volume_QC, source_location, destination_96_QC, blow_out=True, new_tip = 'never')
     p300_multi.transfer(volume_screen, source_location, destination_384, blow_out=True, new_tip = 'never')
     p300_multi.drop_tip()
-p300_multi.distribute(volume_QC_solvent, source_trough4row.wells(location_QC_solvent), [x.top() for x in destination_QC.wells(0, to=number_rows)])
+p300_multi.distribute(volume_QC_solvent, source_trough4row.wells(location_QC_solvent), [x.top() for x in destination_QC.rows(0, to=number_rows)])
+robot.home()
 '''
 
 
@@ -813,7 +819,7 @@ robot.head_speed(x=16000, y=16000, z=3000, a=700, b=700)
 # Deck setup
 tiprack_300 = containers.load("tiprack-300ul", "D3")
 source_trough12row = containers.load('trough-12row', "E2")
-reaction_rack = containers.load("StarLab_96_tall", "D1")
+reaction_rack = containers.load("StarLab_96_tall", "E1")
 trash = containers.load("point", "C3")
 
 # Pipettes SetUp
@@ -831,9 +837,9 @@ p300_multi = instruments.Pipette(
     def do_protocol(self):
         return '''
 p300_multi.distribute(volume_base, source_trough12row.wells(source_base),
-                              [x.top() for x in reaction_rack.rows(0, to=number_rows)])
+                              [x.top(-5) for x in reaction_rack.rows(0, to=number_rows)])
 p300_multi.distribute(volume_coupling_agent, source_trough12row.wells(source_coupling_agent),
-                              [x.top() for x in reaction_rack.rows(0, to=number_rows)])
+                              [x.top(-5) for x in reaction_rack.rows(0, to=number_rows)])
 robot.home()
 '''
 
