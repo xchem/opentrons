@@ -5,9 +5,6 @@ files:
   col_csv: "coupling/SM_Amine.csv"
   trough_csv: "coupling/Others.csv"
 processes:
-  0:
-    stock_solution:
-      solvent: "DMA"
   1:
     base_t3p_multi:
       id_header: "CPD ID"
