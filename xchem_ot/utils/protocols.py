@@ -1,7 +1,8 @@
 from .utils import BuildProtocol, get_number_rows
 from builtins import super
 
-class StockSolution(BuildProtocol):
+
+class Stock_test(BuildProtocol):
     '''Function of this protocol:
 Starting Amines and Starting Acid Chlorides are diluted to a set concentration in DMA, using a 1mL eppendorf single channel.
 Amines are in one rack, the acids in another rack. The maximum volume that can be dispensed in one vial (with the SM in) is 3.4 mL.
@@ -11,7 +12,91 @@ dispensing occurs.'''
 
 
     def __str__(self):
-        return "stock_solution"
+        return "stock_test_name"
+
+    def __init__(self,process=None,input_dict=None,name=None,index=None):
+        super().__init__()
+        if process == None:
+            return
+        self.process = process
+        self.input_dict = input_dict
+        self.name = name
+        self.index = index
+
+        # Define the headers
+        id_header = process["id_header"]
+        solvent = process["solvent"]
+        location_header = process["location_header"]
+        volume_stock_header = process["volume_stock_header"]
+
+        # CSV file data
+        row_csv = input_dict["files"]["row_csv"]
+        col_csv = input_dict["files"]["col_csv"]
+        trough_csv = input_dict["files"]["trough_csv"]
+
+        # Now define the lists
+        self.list_vars = {
+            "row_vol_list": {"file": row_csv, "header": volume_stock_header},
+            "row_loc_list": {"file": row_csv, "header": location_header},
+            "col_vol_list": {"file": col_csv, "header": volume_stock_header},
+            "col_loc_list": {"file": col_csv, "header": location_header},
+        }
+        self.trough_vars = {
+            "path": trough_csv,
+            "id_header": id_header,
+            "solvent_location": {"col_header": location_header, "solvent_name": solvent}
+        }
+
+    def do_setup(self):
+        return """
+robot.head_speed(x=18000,  y=18000,  z=5000, a=700, b=700)
+#Deck setup
+tiprack_1000 = containers.load("tiprack-1000ul-H", "B3")
+source_trough4row = containers.load("trough-12row", "C2")
+destination_row = containers.load("FluidX_24_5ml", "A1", "acid")
+destination_col = containers.load("FluidX_24_5ml", "A2", "amine")
+trash = containers.load("point", "C3")
+#Pipettes SetUp
+p1000 = instruments.Pipette(
+    name= 'eppendorf1000',
+    axis='b',
+    trash_container=trash,
+    tip_racks=[tiprack_1000],
+    max_volume=1000,
+    min_volume=30,
+    channels=1,
+)
+"""
+
+    def do_protocol(self):
+        return """
+# Now define the actions
+p1000.pick_up_tip()
+for i, destination_location in enumerate(row_loc_list):
+    vol_to_dispense = [row_vol_list[i]]
+    if vol_to_dispense != 0:
+        p1000.transfer(vol_to_dispense, source_trough4row.wells(solvent_location), destination_row.wells(destination_location).top(-5), new_tip = 'never')
+for i, destination_location in enumerate(col_loc_list):
+    vol_to_dispense = [col_vol_list[i]]
+    if vol_to_dispense != 0:
+        p1000.transfer(vol_to_dispense, source_trough4row.wells(solvent_location), destination_col.wells(destination_location).top(-5), new_tip = 'never')
+p1000.drop_tip()
+robot.home()"""
+
+
+
+
+class Stock(BuildProtocol):
+    '''Function of this protocol:
+Starting Amines and Starting Acid Chlorides are diluted to a set concentration in DMA, using a 1mL eppendorf single channel.
+Amines are in one rack, the acids in another rack. The maximum volume that can be dispensed in one vial (with the SM in) is 3.4 mL.
+This means that if it requires more it is split in another vial, but that should be dealt with upstream.
+This protocol reads the csv file and dispense the volume written. If it is zero (meaning the compound is already in stock solution) then no
+dispensing occurs.'''
+
+
+    def __str__(self):
+        return "stock_name"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()

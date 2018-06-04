@@ -23,7 +23,7 @@ general_reagents:
   solvent: "Solvent"
 processes:
   0:
-    stock_solution:
+    stock_name:
   1:
     multi_base:
   2:
@@ -46,3 +46,5 @@ processes:
     poised_reaction:
       smiles_col_header: "Smiles"
       reaction: 'Amides'
+  11:
+    stock_test_name:
