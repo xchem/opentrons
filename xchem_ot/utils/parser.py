@@ -49,8 +49,8 @@ def open_dict(input_yaml):
 
 
 def check_files(input_dict):
-    for file_name in input_dict["files"]:
-        file_path  =input_dict["files"][file_name]
+    for file_name in sorted(input_dict["files"].keys()):
+        file_path = input_dict["files"][file_name]
         if not os.path.isfile(file_path):
             print("File not found: " + file_path + "\nWith name: " + file_name)
             sys.exit()
