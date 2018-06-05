@@ -2,8 +2,8 @@ CPD ID,IUPAC Name,Smiles,Rack Type,Location,MW (g.mol-1),Density,Reaction Scale 
 DIPEA,Diisopropylethylamine,CCN(CC)CC,Trough,A5,129.24,0.742,0.07,2.5,0.175,30.48113208,80,2438.490566,,
 Solvent,dimethylacetamide,CC(N(C)C)=O,Solvent_Trough,A2,,,,,,,,,,
 MeCN,acetonitrile,CC#N,Solvent_Trough,A10,,,,,,100,,,,
-DCM,dichloromethane,ClCCl,Solvent_Trough,A2,,,,,,280,,,,
-Aqueous,Water,,Solvent_Trough,A5,,,,,,280,,,,
-T3P,Propylphosphonic anhydride solution (50% weight in EtOAc),CCCP1(OP(OP(O1)(CCC)=O)(CCC)=O)=O,Trough,A6,318.18,1.069,0.07,1.2,0.084,50.00396632,96,4800.380767,,
+DCM,dichloromethane,ClCCl,Solvent_Trough,A2,,,,,,300,,,,
+Aqueous,Water,,Solvent_Trough,A5,,,,,,300,,,,
+T3P,Propylphosphonic anhydride solution (50% weight in EtOAc),CCCP1(OP(OP(O1)(CCC)=O)(CCC)=O)=O,Trough,A6,318.18,1.069,0.07,1.2,0.084,50.00396632,80,4000.317306,,
 d6-DMSO,,,Trough,A10,,,,,,133,,,,
 Reaction mixture,crude,,reaction rack,D1,,,,,,280,,,20,30

@@ -179,8 +179,8 @@ class BuildProtocol(object):
                 col_mol = Chem.MolFromSmiles(col_s)
                 counter,output_mols = reactions.perform_reaction(col_mol, self.reaction, row_mol, counter)
                 for mol in output_mols:
-                    rows.append([row_s,col_s,Chem.MolToSmiles(mol),str(row_index),
-                                 str(col_index),get_position(row_index,col_index)])
+                    rows.append([row_s,col_s,Chem.MolToSmiles(mol),str(col_index),
+                                 str(row_index),get_position(col_index,row_index)])
 
         self.files.append(FileHolder("products.smi","\n".join([",".join(x) for x in rows])))
 
