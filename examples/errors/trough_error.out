@@ -1,2 +1,2 @@
 Column: Locati not found in examples/acylation/SM_AcCl.csv
-Options are: ['Location', 'Name', 'Smiles', 'IUPAC name', 'MW', 'Reaction Scale (mmol)', 'Eq', 'amount per reaction (mg)', 'Volume to dispense (theory) at 0.8M', 'Min weight', 'Exp weight', 'Volume to dispense (exp) at 0.8M', 'AC volume per reaction at 0.8M', 'Barcode rack', 'Barcode vial']
+Options are: ['AC volume per reaction at 0.8M', 'Barcode rack', 'Barcode vial', 'Eq', 'Exp weight', 'IUPAC name', 'Location', 'MW', 'Min weight', 'Name', 'Reaction Scale (mmol)', 'Smiles', 'Volume to dispense (exp) at 0.8M', 'Volume to dispense (theory) at 0.8M', 'amount per reaction (mg)']

@@ -26,7 +26,7 @@ class DataFrame(object):
             return Vector(self.dict_input[value])
         else:
             print("Column: " + value + " not found in " + self.input_file
-                             + "\nOptions are: " + str(list(self.dict_input.keys())))
+                             + "\nOptions are: " + str(sorted(list(self.dict_input.keys()))))
             sys.exit()
 
     def __init__(self, dict_input, length, input_file):
@@ -197,7 +197,7 @@ class TroughSetUp(object):
                 solvent_location = location_list[i]
                 return solvent_location
         else:
-            print("Solvent: " + solvent + " not found. \nOptions are: " + str(self.id_list.tolist()))
+            print("Solvent: " + solvent + " not found. \nOptions are: " + str(sorted(self.id_list.tolist())))
             sys.exit()
 
 def get_number_rows(csv_file):
