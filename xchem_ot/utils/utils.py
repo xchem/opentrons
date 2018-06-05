@@ -103,7 +103,7 @@ class BuildProtocol(object):
 
     def do_variables(self):
         if self.list_vars:
-            for key in self.list_vars:
+            for key in sorted(self.list_vars):
                 csv_file = self.list_vars[key]["file"]
                 header = self.list_vars[key]["header"]
                 self.conv_to_var(
@@ -113,7 +113,7 @@ class BuildProtocol(object):
             trough_csv = self.trough_vars["path"]
             id_header = self.trough_vars["id_header"]
             trough_setup = TroughSetUp(trough_csv, id_header)
-            for key in self.trough_vars:
+            for key in sorted(self.trough_vars.keys()):
                 if key in ["path","id_header"]: continue
                 variable = self.trough_vars[key]
                 self.conv_to_var(
@@ -123,7 +123,7 @@ class BuildProtocol(object):
                     ),
                     key
                 )
-        for single_var in self.single_vars:
+        for single_var in sorted(self.single_vars):
             self.conv_to_var(self.single_vars[single_var], single_var)
 
 
