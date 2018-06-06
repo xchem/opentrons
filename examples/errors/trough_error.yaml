@@ -23,22 +23,22 @@ general_reagents:
   solvent: "Solvent"
 processes:
   0:
-    stock_solution:
+    stockSolution_ABtype_troughTo24_single1000:
   1:
-    multi_base:
+    baseDispensing_troughTo96_multi300:
   2:
-    mono_dispensing:
+    reagentsDispensing_ABtype_24to96_single1000:
   3:
-    sm_transfer:
+    reagentsQC&Screen_ABtype_24to96_24to384_troughTo96_single1000:
   4:
-    reaction_qc:
+    reactionQC_troughTo96_96to96_multi300:
   5:
-    dma_transfer:
+    reactionTransfer_96to384_multi300:
   6:
-    workup:
+    reactionWUp4mix_troughTo96_multi300_DCM:
   7:
-    post_workup_transfer:
+    pWUpBottomPhaseTransfer_96to96_multi300_DCM:
   8:
-    post_workup_dmso_addition:
+    pWUpDmsoDispensing_troughTo96_multi300:
   9:
-    post_workup_qc_and_transfer:
+    pWUpQC&Screen_96to96_96to384_troughTo96_multi300:

@@ -5,9 +5,9 @@ def gen_prot_dict():
     :param input_list:
     :return:
     """
-    from .protocols import StockSolution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,\
+    from .protocols import Stock_solution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,\
         PostWorkupTransfer,Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti, PoisedReactor
-    input_list = [StockSolution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,PostWorkupTransfer,
+    input_list = [Stock_solution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,PostWorkupTransfer,
                            Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti, PoisedReactor]
     out_dict = {}
     for protocol in input_list:
@@ -49,8 +49,8 @@ def open_dict(input_yaml):
 
 
 def check_files(input_dict):
-    for file_name in input_dict["files"]:
-        file_path  =input_dict["files"][file_name]
+    for file_name in sorted(input_dict["files"].keys()):
+        file_path = input_dict["files"][file_name]
         if not os.path.isfile(file_path):
             print("File not found: " + file_path + "\nWith name: " + file_name)
             sys.exit()

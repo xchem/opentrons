@@ -1,2 +1,2 @@
 Column: Locati not found in examples/acylation/SM_Amine.csv
-Options are: ['Smiles', 'Volume Screen', 'Volume to dispense (exp) at 0.8M', 'Amine amount p reaction (mg)', 'Barcode rack', 'MW Amine', 'weight min to dispense', 'Volume QC', 'Exp weight', 'Eq Amine', 'Volume to dispense (theory) at 0.8M', 'Location', 'Reaction Scale (mmol)', 'Amine Name', 'Barcode vial', 'AM volume per reaction at 0.8M', 'Amine']
+Options are: ['AM volume per reaction at 0.8M', 'Barcode rack', 'Barcode vial', 'Eq', 'Exp weight', 'IUPAC name', 'Location', 'MW', 'Min weight', 'Name', 'Reaction Scale (mmol)', 'Smiles', 'Volume to dispense (exp) at 0.8M', 'Volume to dispense (theory) at 0.8M', 'amount per reaction (mg)']
