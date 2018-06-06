@@ -1,7 +1,8 @@
 from .utils import BuildProtocol, get_number_rows
 from builtins import super
 
-class StockSolution(BuildProtocol):
+
+class Stock_solution(BuildProtocol):
     '''Function of this protocol:
 Starting Amines and Starting Acid Chlorides are diluted to a set concentration in DMA, using a 1mL eppendorf single channel.
 Amines are in one rack, the acids in another rack. The maximum volume that can be dispensed in one vial (with the SM in) is 3.4 mL.
@@ -11,7 +12,7 @@ dispensing occurs.'''
 
 
     def __str__(self):
-        return "stock_solution"
+        return "stockSolution_ABtype_troughTo24_single1000"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -89,7 +90,7 @@ The base is added onto all the wells, using the 8 channel pipette, 300uL.
 Dependencies. Only on number of rows, if there are not 12 acids. To know how many rows needs dispensing, it counts the number of Acid rows on the csv file,
 This protocol reads the other csv file and dispense the volume written. '''
     def __str__(self):
-        return "multi_base"
+        return "baseDispensing_troughTo96_multi300"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -155,7 +156,7 @@ Reagents (acids and amines) dispensing using the single channel 1000uL.
 Acids are dispensed in rows, Amines are dispensed in columns.'''
 
     def __str__(self):
-        return "mono_dispensing"
+        return "reagentsDispensing_ABtype_24to96_single1000"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -230,7 +231,7 @@ function QC: transfer 20 to 96 plate, then add 100ul MeCN. On the plate it start
 function Screen: transfer 30 to 384PP labcyte. Starts at A14, B14.... so that you can later use the same plate to transfer the products on the first half of the plate'''
 
     def __str__(self):
-        return "sm_transfer"
+        return "reagentsQC&Screen_ABtype_24to96_24to384_troughTo96_single1000"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -328,7 +329,7 @@ Same as before, ths pipette has no minimum
 '''
 
     def __str__(self):
-        return "reaction_qc"
+        return "reactionQC_troughTo96_96to96_multi300"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -405,7 +406,7 @@ What is needed is the number of rows where reaction mixture needs to be taken ou
 '''
 
     def __str__(self):
-        return "dma_transfer"
+        return "reactionTransfer_96to384_multi300"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -470,7 +471,7 @@ class Workup(BuildProtocol):
     '''
 
     def __str__(self):
-        return "workup"
+        return "reactionWUp4mix_troughTo96_multi300_DCM"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -548,7 +549,7 @@ It will transfer it to another 96 rack, which can be fluidx rack, or normal PCR:
 Also,this is where studies need to be done regarding pre wetting and speed of aspirating, becasue we deal with DCM.'''
 
     def __str__(self):
-        return "post_workup_transfer"
+        return "pWUpBottomPhaseTransfer_96to96_multi300_DCM"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -619,7 +620,7 @@ in d6-dmso or dmso. The amount of dmso needs to be calculated, and depends on th
 (done in csv file). Simplest of protocol'''
 
     def __str__(self):
-        return "post_workup_dmso_addition"
+        return "pWUpDmsoDispensing_troughTo96_multi300"
 
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
@@ -688,6 +689,9 @@ class PostWorkupQCAndTransfer(BuildProtocol):
     Dispensing for screening plate starts at A1, using the 300 multichannel'''
 
 
+    def __str__(self):
+        return "pWUpQC&Screen_96to96_96to384_troughTo96_multi300"
+
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
         if process is None:
@@ -723,9 +727,6 @@ class PostWorkupQCAndTransfer(BuildProtocol):
         self.single_vars = {
             "number_rows": get_number_rows(row_csv) - 1
         }
-
-    def __str__(self):
-        return "post_workup_qc_and_transfer"
 
     def do_setup(self):
         return '''
@@ -777,6 +778,11 @@ class BaseT3PMulti(BuildProtocol):
     It is possible to have a break between aspiration  and movement, but experimentation muct be done first to check
     if slowest speed is already enough. In brief, needs optimising'''
 
+
+    def __str__(self):
+        return "base&couplingDispensing_troughTo96_multi300_viscous"
+
+
     def __init__(self,process=None,input_dict=None,name=None,index=None):
         super().__init__()
         if process is None:
@@ -807,15 +813,12 @@ class BaseT3PMulti(BuildProtocol):
         }
 
         self.single_vars = {
-            "number_rows": get_number_rows(row_csv)
+            "number_rows": get_number_rows(row_csv) - 1
         }
-
-    def __str__(self):
-        return "base_t3p_multi"
 
     def do_setup(self):
         return '''
-robot.head_speed(x=16000, y=16000, z=3000, a=700, b=700)
+robot.head_speed(x=16000, y=16000, z=3000, a=200, b=200)
 # Deck setup
 tiprack_300 = containers.load("tiprack-300ul", "D3")
 source_trough12row = containers.load('trough-12row', "E2")
