@@ -1,2 +1,2 @@
 Solvent: ERR not found. 
-Options are: ['TEA', 'Solvent', 'MeCN', 'DCM', 'Aqueous', 'd6-DMSO', 'Reaction mixture']
+Options are: ['Aqueous', 'DCM', 'MeCN', 'Reaction mixture', 'Solvent', 'TEA', 'd6-DMSO']

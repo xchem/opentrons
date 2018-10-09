@@ -1,0 +1,11 @@
+CPD ID,Structure,Original Name,Rack Type,Max volume in rack (4 mL),Rack Barcode,Vial Barcode,Location rack,Location 1536 XCHEM,Chemist,Salt,SMILES,weight (mg),MW (g.mol-1),Density,Volume of reagent,Volume to add for 0.8M (uL),Reaction Scale (mmol),Equivalent,Quant Reagent (mmol),Volume per reaction (uL),nb reaction per plate,Volume needed (mL)
+CA1,C8H8O3,2-(3-hydroxyphenyl)acetic acid,Fluidx 24 9mL,5,NA, FB04712976,C6,NA,TDI,N,O=C(CC1=CC=C(O)C=C1)O,351.9,152.149,NA,NA,2.891080454,0.08,1.05,0.084,105,8,0.84
+CA2,C9H10O2,2-(o-tolyl)acetic acid,Fluidx 24 9mL,5,NA, FB04712975,D4,NA,TDI,N,CC1=CC=CC=C1CC(O)=O,342.7,150.177,NA,NA,2.852467422,0.08,1.05,0.084,105,8,0.84
+CA3,C9H10O2,2-(m-tolyl)acetic acid,Fluidx 24 9mL,5,NA, FB04712978,D2,NA,TDI,N,CC1=CC(CC(O)=O)=CC=C1,329,150.177,NA,NA,2.738435313,0.08,1.05,0.084,105,8,0.84
+CA4,C8H7ClO2,2-(3-chlorophenyl)acetic acid,Fluidx 24 9mL,5,NA,FB04713135,D6,NA,TDI,N,ClC1=CC=CC(CC(O)=O)=C1,365.7,170.592,NA,NA,2.679639139,0.08,1.05,0.084,105,8,0.84
+CA5,C8H6F2O2,2-(2-4-difluorophenyl)acetic acid,Fluidx 24 6mL,4,NA,FB00049338,A2,NA,TDI,N,FC1=CC=C(CC(O)=O)C(F)=C1,341.6,172.1308064,NA,NA,2.480671583,0.08,1.05,0.084,105,8,0.84
+CA6,C8H5NO2,4-cyanobenzoic acid,Fluidx 24 6mL,4,NA, FB00049219,A4,NA,TDI,N,O=C(O)C1=CC=C(C#N)C=C1,343.7,147.133,NA,NA,2.919977164,0.08,1.05,0.084,105,8,0.84
+CA7,C7H6O3,4-hydroxybenzoic acid,Fluidx 24 9mL,5,NA, FB04712987,C3,NA,TDI,N,OC1=CC=C(C(O)=O)C=C1,372.7,138.122,NA,NA,3.372923937,0.08,1.05,0.084,105,8,0.84
+CA8,C9H9NO3,4-acetamidobenzoic acid,Fluidx 24 6mL,4,NA, FB00049206,A6,NA,TDI,N,O=C(C1=CC(NC(C)=O)=CC=C1)O,313.6,179.175,NA,NA,2.187805218,0.08,1.05,0.084,105,8,0.84
+CA9,C6H4BrNO2,6-bromonicotinic acid,Fluidx 24 6mL,4,NA, FB00049500,B2,NA,TDI,N,O=C(O)C1=CC=C(Br)N=C1,320.5,202.007,NA,NA,1.983223354,0.08,1.05,0.084,105,8,0.84
+CA10,C8H7FO2,5-fluoro-2-methylbenzoic acid,Fluidx 24 9mL,5,NA, FB04712993,C5,NA,TDI,N,O=C(O)C1=C(C)C=CC(F)=C1,307.5,154.1404032,NA,NA,2.493668059,0.08,1.05,0.084,105,8,0.84

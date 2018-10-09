@@ -1,0 +1,17 @@
+name: "coupling"
+inherit: "acylation.yaml"
+files:
+  row_csv: "coupling/SM_AcOH.csv"
+  col_csv: "coupling/SM_Amine.csv"
+  trough_csv: "coupling/Others.csv"
+processes:
+  0:
+    stock_solution:
+      solvent: "DMA"
+  1:
+    base_t3p_multi:
+      id_header: "CPD ID"
+      location_header: "Location"
+      base: "DIPEA"
+      coupling_agent: "T3P"
+      volume_per_well: "Volume per well (ul)"

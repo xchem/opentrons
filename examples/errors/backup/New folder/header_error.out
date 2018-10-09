@@ -1,0 +1,10 @@
+Skipping: stock_solution
+Skipping: multi_base
+Skipping: mono_dispensing
+Skipping: sm_transfer
+Skipping: reaction_qc
+Skipping: dma_transfer
+Skipping: workup
+Skipping: post_workup_transfer
+Skipping: post_workup_dmso_addition
+Skipping: post_workup_qc_and_transfer

@@ -6,7 +6,7 @@ files:
   trough_csv: "examples/coupling/Others.csv"
 processes:
   0:
-    stock_solution:
+    stockSolution_ABtype_troughTo24_single1000:
       solvent: "DMA"
   1:
     base_t3p_multi:

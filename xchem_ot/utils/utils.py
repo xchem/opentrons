@@ -26,7 +26,7 @@ class DataFrame(object):
             return Vector(self.dict_input[value])
         else:
             print("Column: " + value + " not found in " + self.input_file
-                             + "\nOptions are: " + str(list(self.dict_input.keys())))
+                             + "\nOptions are: " + str(sorted(list(self.dict_input.keys()))))
             sys.exit()
 
     def __init__(self, dict_input, length, input_file):
@@ -103,7 +103,7 @@ class BuildProtocol(object):
 
     def do_variables(self):
         if self.list_vars:
-            for key in self.list_vars:
+            for key in sorted(self.list_vars):
                 csv_file = self.list_vars[key]["file"]
                 header = self.list_vars[key]["header"]
                 self.conv_to_var(
@@ -113,7 +113,7 @@ class BuildProtocol(object):
             trough_csv = self.trough_vars["path"]
             id_header = self.trough_vars["id_header"]
             trough_setup = TroughSetUp(trough_csv, id_header)
-            for key in self.trough_vars:
+            for key in sorted(self.trough_vars.keys()):
                 if key in ["path","id_header"]: continue
                 variable = self.trough_vars[key]
                 self.conv_to_var(
@@ -123,7 +123,7 @@ class BuildProtocol(object):
                     ),
                     key
                 )
-        for single_var in self.single_vars:
+        for single_var in sorted(self.single_vars):
             self.conv_to_var(self.single_vars[single_var], single_var)
 
 
@@ -197,7 +197,7 @@ class TroughSetUp(object):
                 solvent_location = location_list[i]
                 return solvent_location
         else:
-            print("Solvent: " + solvent + " not found. \nOptions are: " + str(self.id_list.tolist()))
+            print("Solvent: " + solvent + " not found. \nOptions are: " + str(sorted(self.id_list.tolist())))
             sys.exit()
 
 def get_number_rows(csv_file):
