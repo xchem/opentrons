@@ -23,22 +23,28 @@ general_reagents:
   solvent: "Solvent"
 processes:
   0:
-    stock_solution:
+    stockSolution_2reactants_troughTo24_single1000:
   1:
-    multi_base:
+    reactantsDispensing_ColThenRow_2reactants_24to96_single1000:
   2:
-    mono_dispensing:
+    baseDispensing_troughTo96_multi300:
   3:
-    sm_transfer:
+    reactantsQC&Screen_2reactants_24to96_24to384_troughTo96_single1000:
   4:
-    reaction_qc:
+    reactionQC_troughTo96_96to96_multi300:
   5:
-    dma_transfer:
+    reactionQC_AddOtherSolvent_troughTo96_96to96_multi300:
   6:
-    workup:
+    reactionTransfer_96to384_multi300:
   7:
-    post_workup_transfer:
+    reactionWUp4mix_troughTo96_multi300:
   8:
-    post_workup_dmso_addition:
+    pWUpBottomPhaseTransfer_96to96_multi300:
   9:
-    post_workup_qc_and_transfer:
+    pWUpScreenSolventDispensing_troughTo96_multi300:
+  10:
+    pWUpQC&Screen_96to96_96to384_troughTo96_multi300:
+  11:
+    poised_reaction:
+      smiles_col_header: "Smiles"
+      reaction: 'Amides'
