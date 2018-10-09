@@ -1,3 +1,10 @@
 Skipping: stock_solution
-Column: AC volume p reaction at 0.8M not found in examples/acylation/SM_AcCl.csv
-Options are: ['Location', 'Name', 'Smiles', 'IUPAC name', 'MW', 'Reaction Scale (mmol)', 'Eq', 'amount per reaction (mg)', 'Volume to dispense (theory) at 0.8M', 'Min weight', 'Exp weight', 'Volume to dispense (exp) at 0.8M', 'AC volume per reaction at 0.8M', 'Barcode rack', 'Barcode vial']
+Skipping: multi_base
+Skipping: mono_dispensing
+Skipping: sm_transfer
+Skipping: reaction_qc
+Skipping: dma_transfer
+Skipping: workup
+Skipping: post_workup_transfer
+Skipping: post_workup_dmso_addition
+Skipping: post_workup_qc_and_transfer
