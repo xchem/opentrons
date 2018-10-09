@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+Column: AC volume p reaction at 0.8M not found in examples/acylation/SM_AcCl.csv
+<<<<<<< HEAD
+Options are: ['Location', 'Name', 'Smiles', 'IUPAC name', 'MW', 'Reaction Scale (mmol)', 'Eq', 'amount per reaction (mg)', 'Volume to dispense (theory) at 0.8M', 'Min weight', 'Exp weight', 'Volume to dispense (exp) at 0.8M', 'AC volume per reaction at 0.8M', 'Barcode rack', 'Barcode vial']
+=======
+Options are: ['AC volume per reaction at 0.8M', 'Barcode rack', 'Barcode vial', 'Eq', 'Exp weight', 'IUPAC name', 'Location', 'MW', 'Min weight', 'Name', 'Reaction Scale (mmol)', 'Smiles', 'Volume to dispense (exp) at 0.8M', 'Volume to dispense (theory) at 0.8M', 'amount per reaction (mg)']
+>>>>>>> 115ed0dc729ccd156cb492345245f93e6d1b7d59
+=======
+Skipping: stock_solution
+Skipping: multi_base
+Skipping: mono_dispensing
+Skipping: sm_transfer
+Skipping: reaction_qc
+Skipping: dma_transfer
+Skipping: workup
+Skipping: post_workup_transfer
+Skipping: post_workup_dmso_addition
+Skipping: post_workup_qc_and_transfer
+>>>>>>> 22b7e353c318d12eba8139ca98a25e73f8b0f190
