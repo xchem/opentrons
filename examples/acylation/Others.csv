@@ -2,6 +2,7 @@ CPD ID,IUPAC Name,Smiles,Rack Type,Location,MW (g.mol-1),Density,Reaction Scale 
 TEA,Triethylamine,CCN(CC)CC,Trough,A4,101.19,0.726,0.07,2.5,0.175,24.39152893,96,2341.586777,,
 Solvent,dimethylacetamide,CC(N(C)C)=O,Solvent_Trough,A2,,,,,,,,,,
 MeCN,acetonitrile,CC#N,Solvent_Trough,A5,,,,,,100,,,,
+MeOH,methanol,CO,Solvent_Trough,A5,,,,,,30,,,,
 DCM,dichloromethane,ClCCl,Solvent_Trough,A8,,,,,,300,,,,
 Aqueous,Ammonium chloride -  water 1:1,,Solvent_Trough,A11,,,,,,300,,,,
 d6-DMSO,,,Trough,A10,,,,,,108,,,,

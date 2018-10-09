@@ -1,0 +1,17 @@
+ReactantOne,ReactantTwo,Product,Row,Column,Well
+O=C(Cl)CC1=CC(OC)=CC=C1,NC1=NOC=C1,COc1cccc(CC(=O)Nc2ccon2)c1,0,0,A1
+O=C(Cl)CC1=CC(OC)=CC=C1,FC1=CC=CC=C1N,COc1cccc(CC(=O)Nc2ccccc2F)c1,0,1,A2
+O=C(Cl)CC1=CC(OC)=CC=C1,NC1=CN=CC=C1,COc1cccc(CC(=O)Nc2cccnc2)c1,0,2,A3
+O=C(Cl)CC1=CC(OC)=CC=C1,NC1=NC=CC=N1,COc1cccc(CC(=O)Nc2ncccn2)c1,0,3,A4
+O=C(Cl)CC1=CC=C(OC)C=C1,NC1=NOC=C1,COc1ccc(CC(=O)Nc2ccon2)cc1,1,0,B1
+O=C(Cl)CC1=CC=C(OC)C=C1,FC1=CC=CC=C1N,COc1ccc(CC(=O)Nc2ccccc2F)cc1,1,1,B2
+O=C(Cl)CC1=CC=C(OC)C=C1,NC1=CN=CC=C1,COc1ccc(CC(=O)Nc2cccnc2)cc1,1,2,B3
+O=C(Cl)CC1=CC=C(OC)C=C1,NC1=NC=CC=N1,COc1ccc(CC(=O)Nc2ncccn2)cc1,1,3,B4
+O=C(Cl)C1=CC=CC=C1,NC1=NOC=C1,O=C(Nc1ccon1)c1ccccc1,2,0,C1
+O=C(Cl)C1=CC=CC=C1,FC1=CC=CC=C1N,O=C(Nc1ccccc1F)c1ccccc1,2,1,C2
+O=C(Cl)C1=CC=CC=C1,NC1=CN=CC=C1,O=C(Nc1cccnc1)c1ccccc1,2,2,C3
+O=C(Cl)C1=CC=CC=C1,NC1=NC=CC=N1,O=C(Nc1ncccn1)c1ccccc1,2,3,C4
+O=C(Cl)C1=CC=C(N(C)C)C=C1,NC1=NOC=C1,CN(C)c1ccc(C(=O)Nc2ccon2)cc1,3,0,D1
+O=C(Cl)C1=CC=C(N(C)C)C=C1,FC1=CC=CC=C1N,CN(C)c1ccc(C(=O)Nc2ccccc2F)cc1,3,1,D2
+O=C(Cl)C1=CC=C(N(C)C)C=C1,NC1=CN=CC=C1,CN(C)c1ccc(C(=O)Nc2cccnc2)cc1,3,2,D3
+O=C(Cl)C1=CC=C(N(C)C)C=C1,NC1=NC=CC=N1,CN(C)c1ccc(C(=O)Nc2ncccn2)cc1,3,3,D4
