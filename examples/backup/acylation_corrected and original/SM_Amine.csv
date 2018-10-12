@@ -1,0 +1,9 @@
+Location,Name,Smiles,IUPAC name,MW,Reaction Scale (mmol),Eq,amount per reaction (mg),Volume to dispense (theory) at 0.8M,Min weight,Exp weight,Volume to dispense (exp) at 0.8M,AM volume per reaction at 0.8M,Barcode rack,Barcode vial
+A1,AM1,NC1=NOC=C1,isoxazol-3-amine,84.078,0.07,1,5.88546,875,73568.25,,,87.5,,
+A2,AM2,FC1=CC=CC=C1N,2-fluoroaniline,111.1194032,0.07,1,7.778358224,875,97229.4778,,,87.5,,
+A3,AM3,NC1=CN=CC=C1,pyridin-3-amine,94.117,0.07,1,6.58819,875,82352.375,,,87.5,,
+A4,AM4,NC1=NN=CC=C1,pyridazin-3-amine,95.105,0.07,1,6.65735,875,83216.875,,,87.5,,
+A5,AM5,NC1=NC=CC=C1,pyridin-2-amine,94.117,0.07,1,6.58819,875,82352.375,,,87.5,,
+A6,AM6,NC1=NC=CC=N1,pyrimidin-2-amine,95.105,0.07,1,6.65735,875,83216.875,,,87.5,,
+B1,AM7,ClC1=CC=CC(N)=C1,3-chloroaniline,127.571,0.07,1,8.92997,875,111624.625,,,87.5,,
+B2,AM8,CC1=CC(N)=NO1,5-methylisoxazol-3-amine,98.105,0.07,1,6.86735,875,85841.875,,,87.5,,

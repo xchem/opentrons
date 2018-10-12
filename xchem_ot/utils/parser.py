@@ -5,9 +5,9 @@ def gen_prot_dict():
     :param input_list:
     :return:
     """
-    from .protocols import Stock_solution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,\
+    from .protocols import Stock_solution,MonoDispensing_type1,MonoDispensing_type2,MultiBase,SMTransfer,ReactionQC,QCSolubilise,DMATransfer,\
         PostWorkupTransfer,Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti, PoisedReactor
-    input_list = [Stock_solution,MonoDispensing,MultiBase,SMTransfer,ReactionQC,DMATransfer,PostWorkupTransfer,
+    input_list = [Stock_solution,MonoDispensing_type1,MonoDispensing_type2,MultiBase,SMTransfer,ReactionQC,QCSolubilise,DMATransfer,PostWorkupTransfer,
                            Workup,PostWorkupQCAndTransfer,PostWorkupDMSOAddition,BaseT3PMulti, PoisedReactor]
     out_dict = {}
     for protocol in input_list:

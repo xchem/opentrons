@@ -17,32 +17,35 @@ general_reagents:
   wup_solvent: "DCM"
   base: "TEA"
   solvent_QC: "MeCN"
+  solvent_QC2: "MeOH"
   aqueous: "Aqueous"
   reaction_mixture: "Reaction mixture"
   dmso: "d6-DMSO"
   solvent: "Solvent"
 processes:
   0:
-    stockSolution_ABtype_troughTo24_single1000:
+    stockSolution_2reactants_troughTo24_single1000:
   1:
-    baseDispensing_troughTo96_multi300:
+    reactantsDispensing_ColThenRow_2reactants_24to96_single1000:
   2:
-    reagentsDispensing_ABtype_24to96_single1000:
+    baseDispensing_troughTo96_multi300:
   3:
-    reagentsQC&Screen_ABtype_24to96_24to384_troughTo96_single1000:
+    reactantsQC&Screen_2reactants_24to96_24to384_troughTo96_single1000:
   4:
     reactionQC_troughTo96_96to96_multi300:
   5:
-    reactionTransfer_96to384_multi300:
+    reactionQC_AddOtherSolvent_troughTo96_96to96_multi300:
   6:
-    reactionWUp4mix_troughTo96_multi300_DCM:
+    reactionTransfer_96to384_multi300:
   7:
-    pWUpBottomPhaseTransfer_96to96_multi300_DCM:
+    reactionWUp4mix_troughTo96_multi300:
   8:
-    pWUpDmsoDispensing_troughTo96_multi300:
+    pWUpBottomPhaseTransfer_96to96_multi300:
   9:
-    pWUpQC&Screen_96to96_96to384_troughTo96_multi300:
+    pWUpScreenSolventDispensing_troughTo96_multi300:
   10:
+    pWUpQC&Screen_96to96_96to384_troughTo96_multi300:
+  11:
     poised_reaction:
       smiles_col_header: "Smiles"
       reaction: 'Amides'
